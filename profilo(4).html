@@ -1,0 +1,6457 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<meta http-equiv="Cache-Control"
+content="no-cache, no-store, must-revalidate">
+
+<meta http-equiv="Pragma"
+content="no-cache">
+
+<meta http-equiv="Expires"
+content="0">
+
+<title>Profilo — ALIS Duelist System</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
+
+<link
+href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&display=swap"
+rel="stylesheet">
+
+
+<style>
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100%;
+    font-family: 'Orbitron', sans-serif;
+    color: white;
+    overflow-x: hidden;
+}
+
+
+/* =========================================================
+   SFONDO
+========================================================= */
+
+body {
+
+    background:
+
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(0,213,255,0.15),
+            transparent 32%
+        ),
+
+        radial-gradient(
+            circle at 0% 65%,
+            rgba(0,112,255,0.08),
+            transparent 35%
+        ),
+
+        linear-gradient(
+            180deg,
+            #020914 0%,
+            #041322 50%,
+            #020812 100%
+        );
+}
+
+
+body::before {
+
+    content: "";
+
+    position: fixed;
+
+    inset: -80px;
+
+    z-index: -3;
+
+    background-image:
+
+        linear-gradient(
+            rgba(0,220,255,0.045) 1px,
+            transparent 1px
+        ),
+
+        linear-gradient(
+            90deg,
+            rgba(0,220,255,0.045) 1px,
+            transparent 1px
+        );
+
+    background-size: 42px 42px;
+
+    transform:
+        perspective(600px)
+        rotateX(58deg)
+        scale(1.8)
+        translateY(80px);
+
+    transform-origin: center bottom;
+
+    animation:
+        gridMove 18s linear infinite;
+
+    pointer-events: none;
+}
+
+
+@keyframes gridMove {
+
+    to {
+
+        background-position:
+            0 42px,
+            42px 0;
+
+    }
+
+}
+
+
+body::after {
+
+    content: "";
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: -2;
+
+    pointer-events: none;
+
+    background:
+
+        radial-gradient(
+            circle,
+            transparent 35%,
+            rgba(0,0,0,0.32) 100%
+        );
+}
+
+
+/* =========================================================
+   PAGINA
+========================================================= */
+
+.page {
+
+    width: 100%;
+
+    max-width: 560px;
+
+    margin: 0 auto;
+
+    padding:
+        18px
+        14px
+        30px;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.header {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 18px;
+}
+
+
+.back {
+
+    width: 34px;
+
+    height: 34px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 50%;
+
+    border:
+        1px solid
+        rgba(125,235,255,0.25);
+
+    background:
+        rgba(4,30,50,0.55);
+
+    color: white;
+
+    text-decoration: none;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 22px;
+}
+
+
+.back:active {
+
+    transform:
+        scale(0.90);
+}
+
+
+.brand {
+
+    text-align: center;
+
+    flex: 1;
+}
+
+
+.brand-main {
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    letter-spacing: 2.2px;
+
+    text-shadow:
+        0 0 8px
+        rgba(0,220,255,0.55);
+}
+
+
+.brand-sub {
+
+    margin-top: 4px;
+
+    font-size: 6px;
+
+    letter-spacing: 2.5px;
+
+    color:
+        rgba(175,235,255,0.55);
+}
+
+
+.header-space {
+
+    width: 34px;
+}
+
+
+/* =========================================================
+   TITOLI
+========================================================= */
+
+.section-header {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin-bottom: 10px;
+}
+
+
+.section-line {
+
+    flex: 1;
+
+    height: 1px;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(0,220,255,0.45)
+        );
+}
+
+
+.section-line.right {
+
+    background:
+
+        linear-gradient(
+            90deg,
+            rgba(0,220,255,0.45),
+            transparent
+        );
+}
+
+
+.section-title {
+
+    font-size: 8px;
+
+    letter-spacing: 2px;
+
+    font-weight: 700;
+
+    white-space: nowrap;
+
+    color:
+        rgba(220,250,255,0.9);
+}
+
+
+/* =========================================================
+   ID CARD
+========================================================= */
+
+.id-card {
+
+    position: relative;
+
+    width: 100%;
+
+    padding: 17px;
+
+    border-radius: 20px;
+
+    border:
+        1px solid
+        rgba(130,235,255,0.38);
+
+    background:
+
+        linear-gradient(
+            135deg,
+            rgba(14,64,89,0.68),
+            rgba(3,24,42,0.82)
+        );
+
+    box-shadow:
+
+        inset 0 1px 0
+        rgba(255,255,255,0.08),
+
+        0 15px 40px
+        rgba(0,0,0,0.35),
+
+        0 0 25px
+        rgba(0,200,255,0.08);
+
+    overflow: hidden;
+}
+
+
+.id-card::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+
+    left: 7%;
+
+    right: 7%;
+
+    height: 1px;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(80,235,255,0.8),
+            transparent
+        );
+}
+
+
+.id-top {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 14px;
+
+    position: relative;
+
+    z-index: 2;
+}
+
+
+.id-title {
+
+    font-size: 7px;
+
+    letter-spacing: 2.5px;
+
+    color:
+        rgba(170,235,250,0.65);
+}
+
+
+.id-top-right {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+}
+
+
+.id-code {
+
+    font-size: 6px;
+
+    letter-spacing: 1.5px;
+
+    color:
+        rgba(130,220,240,0.4);
+}
+
+
+/* =========================================================
+   RANK
+========================================================= */
+
+.rank-badge {
+
+    width: 34px;
+
+    height: 34px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 9px;
+
+    font-size: 20px;
+
+    font-weight: 800;
+
+    font-style: italic;
+}
+
+
+/* S ORO */
+
+.rank-s {
+
+    color:
+        #ffe27a;
+
+    border:
+        1px solid
+        rgba(255,220,105,0.72);
+
+    background:
+
+        linear-gradient(
+            145deg,
+            rgba(255,210,70,0.20),
+            rgba(110,75,5,0.22)
+        );
+
+    box-shadow:
+        0 0 13px
+        rgba(255,205,60,0.20);
+
+    text-shadow:
+        0 0 10px
+        rgba(255,200,50,0.65);
+}
+
+
+/* A ARGENTO */
+
+.rank-a {
+
+    color:
+        #e8f5ff;
+
+    border:
+        1px solid
+        rgba(215,235,245,0.68);
+
+    background:
+
+        linear-gradient(
+            145deg,
+            rgba(215,235,245,0.16),
+            rgba(80,105,120,0.18)
+        );
+
+    box-shadow:
+        0 0 12px
+        rgba(190,225,245,0.14);
+}
+
+
+/* B BRONZO */
+
+.rank-b {
+
+    color:
+        #e8a05b;
+
+    border:
+        1px solid
+        rgba(222,148,74,0.68);
+
+    background:
+
+        linear-gradient(
+            145deg,
+            rgba(190,110,45,0.18),
+            rgba(83,45,18,0.22)
+        );
+
+    box-shadow:
+        0 0 12px
+        rgba(205,115,45,0.14);
+}
+
+
+/* C VERDE */
+
+.rank-c {
+
+    color:
+        #72ffc0;
+
+    border:
+        1px solid
+        rgba(95,255,170,0.58);
+
+    background:
+
+        linear-gradient(
+            145deg,
+            rgba(30,180,100,0.14),
+            rgba(5,72,47,0.22)
+        );
+
+    box-shadow:
+        0 0 12px
+        rgba(50,235,150,0.14);
+}
+
+
+/* =========================================================
+   CORPO PROFILO
+========================================================= */
+
+.id-body {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 16px;
+
+    position: relative;
+
+    z-index: 2;
+}
+
+
+/* =========================================================
+   FOTO CIRCOLARE
+========================================================= */
+
+.photo-frame {
+
+    position: relative;
+
+    width: 112px;
+
+    height: 112px;
+
+    flex-shrink: 0;
+
+    padding: 4px;
+
+    border-radius: 50%;
+
+    border:
+        1px solid
+        rgba(125,235,255,0.48);
+
+    background:
+        rgba(0,20,35,0.75);
+
+    box-shadow:
+        0 0 18px
+        rgba(0,210,255,0.12);
+
+    cursor: pointer;
+
+    transition:
+        transform .18s ease,
+        box-shadow .18s ease;
+}
+
+
+.photo-frame:active {
+
+    transform:
+        scale(.95);
+
+    box-shadow:
+        0 0 26px
+        rgba(0,220,255,.28);
+}
+
+
+.photo-frame::after {
+
+    content: "TOCCA";
+
+    position: absolute;
+
+    left: 50%;
+
+    bottom: -17px;
+
+    transform:
+        translateX(-50%);
+
+    padding:
+        3px 6px;
+
+    border-radius:
+        999px;
+
+    border:
+        1px solid
+        rgba(100,235,255,.18);
+
+    background:
+        rgba(0,15,28,.72);
+
+    font-size:
+        4px;
+
+    letter-spacing:
+        1px;
+
+    color:
+        rgba(205,250,255,.62);
+}
+
+
+.photo-frame img,
+.photo-placeholder {
+
+    width: 100%;
+
+    height: 100%;
+
+    border-radius: 50%;
+}
+
+
+.photo-frame img {
+
+    display: block;
+
+    object-fit: cover;
+}
+
+
+.photo-placeholder {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    font-size: 6px;
+
+    letter-spacing: 1px;
+
+    color:
+        rgba(150,225,245,.35);
+}
+
+
+/* =========================================================
+   INFO
+========================================================= */
+
+.identity-info {
+
+    flex: 1;
+
+    min-width: 0;
+}
+
+
+.identity-label {
+
+    font-size: 5.5px;
+
+    letter-spacing: 1.5px;
+
+    color:
+        rgba(150,225,240,.48);
+
+    margin-bottom: 4px;
+}
+
+
+.identity-name {
+
+    font-size: 20px;
+
+    line-height: 1;
+
+    font-weight: 700;
+
+    letter-spacing: 1.5px;
+
+    margin-bottom: 14px;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    text-shadow:
+        0 0 12px
+        rgba(0,220,255,.4);
+}
+
+
+.identity-deck {
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+    letter-spacing: 1.5px;
+
+    margin-bottom: 13px;
+
+    color:
+        rgba(220,250,255,.9);
+}
+
+
+.id-row {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 8px;
+
+    padding: 6px 0;
+
+    border-bottom:
+        1px solid
+        rgba(120,220,240,.08);
+}
+
+
+.id-row-label {
+
+    font-size: 5.5px;
+
+    letter-spacing: 1px;
+
+    color:
+        rgba(155,225,240,.5);
+}
+
+
+.id-row-value {
+
+    font-size: 7px;
+
+    font-weight: 700;
+}
+
+
+.id-footer {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-top: 18px;
+
+    padding-top: 9px;
+
+    border-top:
+        1px solid
+        rgba(120,220,240,.12);
+
+    position: relative;
+
+    z-index: 2;
+}
+
+
+.id-status {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 5px;
+
+    font-size: 5px;
+
+    letter-spacing: 1.5px;
+
+    color:
+        rgba(150,235,250,.5);
+}
+
+
+.status-dot {
+
+    width: 5px;
+
+    height: 5px;
+
+    border-radius: 50%;
+
+    background:
+        #55f5ff;
+
+    box-shadow:
+        0 0 7px
+        #00eaff;
+}
+
+
+.id-number {
+
+    font-size: 5px;
+
+    letter-spacing: 1px;
+
+    color:
+        rgba(140,220,240,.35);
+}
+
+
+/* =========================================================
+   STATISTICHE
+========================================================= */
+
+.stats {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap: 8px;
+
+    margin-top: 10px;
+}
+
+
+.stat {
+
+    min-height: 83px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    padding:
+        10px 5px;
+
+    border-radius: 15px;
+
+    border:
+        1px solid
+        rgba(135,235,255,.18);
+
+    background:
+
+        linear-gradient(
+            145deg,
+            rgba(19,71,98,.4),
+            rgba(4,27,48,.55)
+        );
+
+    box-shadow:
+        0 8px 20px
+        rgba(0,0,0,.18);
+}
+
+
+.stat-label {
+
+    font-size: 5.5px;
+
+    letter-spacing: 1px;
+
+    color:
+        rgba(180,235,250,.55);
+
+    margin-bottom: 7px;
+}
+
+
+.stat-value {
+
+    font-size: 17px;
+
+    font-weight: 700;
+
+    text-shadow:
+        0 0 9px
+        rgba(0,220,255,.35);
+}
+
+
+/* =========================================================
+   CARD NEURON
+========================================================= */
+
+.neuron-deck-card {
+
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    width: 100%;
+
+    min-height: 82px;
+
+    margin-top: 10px;
+
+    padding:
+        13px 14px;
+
+    border-radius: 17px;
+
+    border:
+        1px solid
+        rgba(135,235,255,.22);
+
+    background:
+
+        linear-gradient(
+            135deg,
+            rgba(18,72,98,.44),
+            rgba(4,27,48,.60)
+        );
+
+    box-shadow:
+
+        inset 0 1px 0
+        rgba(255,255,255,.055),
+
+        0 10px 25px
+        rgba(0,0,0,.20);
+
+    text-decoration: none;
+
+    color: white;
+
+    overflow: hidden;
+
+    transition:
+        transform .18s ease,
+        border-color .18s ease,
+        opacity .18s ease;
+}
+
+
+.neuron-deck-card::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+
+    left: 18%;
+
+    right: 18%;
+
+    height: 1px;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(80,235,255,.65),
+            transparent
+        );
+}
+
+
+.neuron-deck-card:active {
+
+    transform:
+        scale(.975);
+
+    border-color:
+        rgba(80,230,255,.48);
+}
+
+
+.neuron-deck-card.disabled {
+
+    opacity: .48;
+
+    pointer-events: none;
+}
+
+
+.neuron-deck-icon {
+
+    width: 38px;
+
+    height: 38px;
+
+    flex-shrink: 0;
+
+    color:
+        #8ceeff;
+
+    filter:
+        drop-shadow(
+            0 0 8px
+            rgba(0,220,255,.38)
+        );
+}
+
+
+.neuron-deck-icon svg {
+
+    width: 100%;
+
+    height: 100%;
+
+    fill: none;
+
+    stroke:
+        currentColor;
+
+    stroke-width:
+        1.5;
+
+    stroke-linecap:
+        round;
+
+    stroke-linejoin:
+        round;
+}
+
+
+.neuron-deck-info {
+
+    flex: 1;
+
+    min-width: 0;
+}
+
+
+.neuron-deck-kicker {
+
+    font-size: 5px;
+
+    letter-spacing: 1.4px;
+
+    color:
+        rgba(150,225,240,.45);
+
+    margin-bottom: 5px;
+}
+
+
+.neuron-deck-title {
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: 1.2px;
+
+    text-shadow:
+        0 0 9px
+        rgba(0,220,255,.35);
+}
+
+
+.neuron-deck-subtitle {
+
+    margin-top: 5px;
+
+    font-size: 5.5px;
+
+    letter-spacing: 1px;
+
+    color:
+        rgba(180,235,250,.55);
+}
+
+
+.neuron-deck-arrow {
+
+    font-family: Arial, sans-serif;
+
+    font-size: 24px;
+
+    color:
+        rgba(150,235,255,.55);
+}
+
+
+/* =========================================================
+   STORICO
+========================================================= */
+
+.history {
+
+    margin-top: 22px;
+}
+
+
+.history-list {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+}
+
+
+.duel-item {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    min-height: 72px;
+
+    padding:
+        10px 12px;
+
+    border-radius: 15px;
+
+    border:
+        1px solid
+        rgba(135,235,255,.17);
+
+    background:
+
+        linear-gradient(
+            135deg,
+            rgba(14,55,78,.45),
+            rgba(3,25,43,.6)
+        );
+}
+
+
+.duel-number {
+
+    width: 35px;
+
+    height: 35px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 10px;
+
+    border:
+        1px solid
+        rgba(120,225,245,.2);
+
+    background:
+        rgba(0,30,48,.55);
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    color:
+        rgba(170,240,255,.75);
+}
+
+
+.duel-info {
+
+    flex: 1;
+
+    min-width: 0;
+}
+
+
+.duel-label {
+
+    font-size: 5px;
+
+    letter-spacing: 1.3px;
+
+    color:
+        rgba(150,225,240,.45);
+
+    margin-bottom: 5px;
+}
+
+
+.duel-opponent {
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+}
+
+
+.duel-result {
+
+    min-width: 62px;
+
+    text-align: right;
+
+    font-size: 7px;
+
+    font-weight: 700;
+}
+
+
+.win {
+    color: #6effc2;
+}
+
+.draw {
+    color: #ffe878;
+}
+
+.loss {
+    color: #ff7085;
+}
+
+.pending {
+
+    color:
+        rgba(170,230,245,.45);
+}
+
+
+.loading,
+.error {
+
+    text-align: center;
+
+    padding:
+        25px 10px;
+
+    font-size: 7px;
+
+    letter-spacing: 1.5px;
+}
+
+
+.loading {
+
+    color:
+        rgba(150,225,245,.45);
+}
+
+
+.error {
+
+    color:
+        rgba(255,110,130,.75);
+}
+
+
+.footer {
+
+    text-align: center;
+
+    margin-top: 25px;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 7px;
+
+    letter-spacing: 1.5px;
+
+    color:
+        rgba(160,220,235,.2);
+}
+
+
+/* =========================================================
+   MODAL FOTO
+========================================================= */
+
+.photo-modal {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 9999;
+
+    display: none;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 22px;
+
+    background:
+
+        radial-gradient(
+            circle at 50% 44%,
+            rgba(0,215,255,.13),
+            transparent 32%
+        ),
+
+        rgba(0,6,14,.92);
+
+    backdrop-filter:
+        blur(12px);
+
+    overflow: hidden;
+}
+
+
+.photo-modal.open {
+
+    display: flex;
+
+    animation:
+        modalIn .25s ease both;
+}
+
+
+@keyframes modalIn {
+
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+
+}
+
+
+.photo-modal-close {
+
+    position: absolute;
+
+    top:
+        max(
+            18px,
+            env(safe-area-inset-top)
+        );
+
+    right: 18px;
+
+    z-index: 20;
+
+    width: 40px;
+
+    height: 40px;
+
+    border:
+        1px solid
+        rgba(120,235,255,.3);
+
+    border-radius: 50%;
+
+    background:
+        rgba(4,30,50,.75);
+
+    color: white;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 23px;
+}
+
+
+.photo-modal-stage {
+
+    position: relative;
+
+    width:
+        min(92vw,460px);
+
+    height:
+        min(78vh,620px);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+}
+
+
+.photo-modal-ring {
+
+    position: absolute;
+
+    width:
+        min(80vw,390px);
+
+    aspect-ratio: 1;
+
+    border-radius: 50%;
+
+    border:
+        1px solid
+        rgba(90,235,255,.24);
+
+    box-shadow:
+
+        0 0 35px
+        rgba(0,220,255,.1),
+
+        inset 0 0 35px
+        rgba(0,220,255,.06);
+
+    animation:
+        ringPulse 2s ease-in-out infinite;
+}
+
+
+.photo-modal-ring::before,
+.photo-modal-ring::after {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 9%;
+
+    border-radius: 50%;
+
+    border:
+        1px dashed
+        rgba(100,235,255,.13);
+
+    animation:
+        spin 12s linear infinite;
+}
+
+
+.photo-modal-ring::after {
+
+    inset: 19%;
+
+    animation-direction: reverse;
+
+    animation-duration: 8s;
+}
+
+
+@keyframes ringPulse {
+
+    50% {
+
+        transform:
+            scale(1.04);
+
+        opacity: .7;
+
+    }
+
+}
+
+
+@keyframes spin {
+
+    to {
+
+        transform:
+            rotate(360deg);
+
+    }
+
+}
+
+
+/* =========================================================
+   FOTO INGRANDITA
+========================================================= */
+
+.photo-modal-image-wrap {
+
+    position: relative;
+
+    z-index: 5;
+
+    width:
+        min(72vw,330px);
+
+    height:
+        min(72vw,330px);
+
+    padding: 5px;
+
+    border-radius: 50%;
+
+    border:
+        1px solid
+        rgba(105,240,255,.56);
+
+    background:
+        rgba(0,18,32,.82);
+
+    box-shadow:
+
+        0 0 28px
+        rgba(0,220,255,.18),
+
+        0 25px 55px
+        rgba(0,0,0,.48);
+
+    overflow: hidden;
+
+    animation:
+        photoZoom
+        .48s
+        cubic-bezier(.16,.84,.25,1.08)
+        both;
+}
+
+
+@keyframes photoZoom {
+
+    0% {
+
+        transform:
+            scale(.28);
+
+        opacity: 0;
+
+    }
+
+    65% {
+
+        transform:
+            scale(1.045);
+
+        opacity: 1;
+
+    }
+
+    100% {
+
+        transform:
+            scale(1);
+
+    }
+
+}
+
+
+.photo-modal-image {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    border-radius: 50%;
+
+    display: block;
+}
+
+
+.photo-modal-name {
+
+    position: absolute;
+
+    z-index: 12;
+
+    left: 50%;
+
+    bottom: 3%;
+
+    transform:
+        translateX(-50%);
+
+    width: 92%;
+
+    text-align: center;
+
+    font-size: 13px;
+
+    font-weight: 800;
+
+    letter-spacing: 3px;
+
+    text-shadow:
+
+        0 0 12px
+        rgba(0,230,255,.8),
+
+        0 0 26px
+        rgba(0,160,255,.4);
+}
+
+
+/* =========================================================
+   OLOGRAMMA
+========================================================= */
+
+.holo-fx {
+
+    position: absolute;
+
+    z-index: 7;
+
+    width:
+        min(92vw,460px);
+
+    height:
+        min(76vh,570px);
+
+    left: 50%;
+
+    top: 50%;
+
+    transform:
+        translate(-50%,-50%);
+
+    pointer-events: none;
+
+    color:
+        #74efff;
+
+    opacity: 1;
+
+    visibility: visible;
+
+    transition:
+
+        opacity
+        .82s
+        cubic-bezier(.4,0,.2,1),
+
+        filter
+        .82s;
+}
+
+
+.holo-fx.fade {
+
+    opacity:
+        0 !important;
+
+    filter:
+        blur(5px) !important;
+}
+
+
+.holo-fx svg {
+
+    width: 100%;
+
+    height: 100%;
+
+    overflow: visible;
+
+    filter:
+
+        drop-shadow(
+            0 0 8px
+            rgba(50,225,255,.72)
+        )
+
+        drop-shadow(
+            0 0 18px
+            rgba(0,135,255,.30)
+        );
+}
+
+
+.holo-stroke {
+
+    fill:
+        rgba(25,205,255,.055);
+
+    stroke:
+        currentColor;
+
+    stroke-width: 3;
+
+    stroke-linecap: round;
+
+    stroke-linejoin: round;
+}
+
+
+.holo-thin {
+
+    fill: none;
+
+    stroke:
+        currentColor;
+
+    stroke-width: 2;
+
+    stroke-linecap: round;
+
+    stroke-linejoin: round;
+}
+
+
+.holo-fill {
+
+    fill:
+        rgba(80,235,255,.15);
+
+    stroke:
+        currentColor;
+
+    stroke-width: 2;
+}
+
+
+/* =========================================================
+   ALE — GUANTONI
+========================================================= */
+
+.fx-boxing .glove-left {
+
+    animation:
+        punchLeft
+        .75s
+        ease
+        both;
+}
+
+
+.fx-boxing .glove-right {
+
+    animation:
+        punchRight
+        .75s
+        .13s
+        ease
+        both;
+}
+
+
+.fx-boxing .impact {
+
+    transform-origin:
+        250px 300px;
+
+    animation:
+        impactFlash
+        .5s
+        .42s
+        ease
+        both;
+}
+
+
+@keyframes punchLeft {
+
+    from {
+
+        transform:
+            translateX(-190px)
+            rotate(-25deg);
+
+        opacity: 0;
+
+    }
+
+    70% {
+
+        transform:
+            translateX(22px)
+            rotate(6deg);
+
+        opacity: 1;
+
+    }
+
+    to {
+
+        transform: none;
+
+    }
+
+}
+
+
+@keyframes punchRight {
+
+    from {
+
+        transform:
+            translateX(190px)
+            rotate(25deg);
+
+        opacity: 0;
+
+    }
+
+    70% {
+
+        transform:
+            translateX(-22px)
+            rotate(-6deg);
+
+        opacity: 1;
+
+    }
+
+    to {
+
+        transform: none;
+
+    }
+
+}
+
+
+@keyframes impactFlash {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            scale(.2);
+
+    }
+
+    60% {
+
+        opacity: 1;
+
+        transform:
+            scale(1.5);
+
+    }
+
+    to {
+
+        opacity: .25;
+
+        transform:
+            scale(1);
+
+    }
+
+}
+
+
+/* =========================================================
+   ANDREA — OROLOGIO DA TASCHINO
+========================================================= */
+
+.fx-clock .pocket-watch {
+
+    transform-origin:
+        250px 315px;
+
+    animation:
+
+        pocketWatchIn
+        .72s
+        ease
+        both,
+
+        pocketFloat
+        2.5s
+        .72s
+        ease-in-out
+        infinite;
+}
+
+
+.fx-clock .watch-lid {
+
+    transform-origin:
+        145px 315px;
+
+    animation:
+        watchLidOpen
+        .7s
+        .2s
+        ease
+        both;
+}
+
+
+.fx-clock .watch-chain {
+
+    stroke-dasharray:
+        8 7;
+
+    animation:
+        chainMove
+        1.1s
+        linear
+        infinite;
+}
+
+
+.fx-clock .minute-hand {
+
+    transform-origin:
+        250px 315px;
+
+    animation:
+        spin 1.7s linear infinite;
+}
+
+
+.fx-clock .hour-hand {
+
+    transform-origin:
+        250px 315px;
+
+    animation:
+        spin 5s linear infinite;
+}
+
+
+@keyframes pocketWatchIn {
+
+    from {
+
+        transform:
+            translateY(100px)
+            scale(.2)
+            rotate(-20deg);
+
+        opacity: 0;
+
+    }
+
+    70% {
+
+        transform:
+            translateY(-8px)
+            scale(1.06);
+
+        opacity: 1;
+
+    }
+
+    to {
+
+        transform: none;
+
+    }
+
+}
+
+
+@keyframes pocketFloat {
+
+    50% {
+
+        transform:
+            translateY(-7px)
+            rotate(1deg);
+
+    }
+
+}
+
+
+@keyframes watchLidOpen {
+
+    from {
+
+        transform:
+            translateX(100px)
+            scaleX(.05);
+
+        opacity: 0;
+
+    }
+
+    to {
+
+        transform: none;
+
+        opacity: .9;
+
+    }
+
+}
+
+
+@keyframes chainMove {
+
+    to {
+
+        stroke-dashoffset:
+            -30;
+
+    }
+
+}
+
+
+/* =========================================================
+   GABRY — SQUALO
+========================================================= */
+
+.fx-shark .jaw-top {
+
+    animation:
+        jawTop .8s ease both;
+}
+
+
+.fx-shark .jaw-bottom {
+
+    animation:
+        jawBottom .8s ease both;
+}
+
+
+.fx-shark .water-wave {
+
+    stroke-dasharray:
+        16 12;
+
+    animation:
+        waterMove
+        1.6s
+        linear
+        infinite;
+}
+
+
+.fx-shark .bubble {
+
+    animation:
+        bubbleMove
+        1.7s
+        ease-in
+        infinite;
+}
+
+
+@keyframes jawTop {
+
+    from {
+
+        transform:
+            translateY(-150px);
+
+        opacity: 0;
+
+    }
+
+    65% {
+
+        transform:
+            translateY(18px);
+
+        opacity: 1;
+
+    }
+
+    to {
+
+        transform: none;
+
+    }
+
+}
+
+
+@keyframes jawBottom {
+
+    from {
+
+        transform:
+            translateY(150px);
+
+        opacity: 0;
+
+    }
+
+    65% {
+
+        transform:
+            translateY(-18px);
+
+        opacity: 1;
+
+    }
+
+    to {
+
+        transform: none;
+
+    }
+
+}
+
+
+@keyframes waterMove {
+
+    to {
+
+        stroke-dashoffset:
+            -56;
+
+    }
+
+}
+
+
+@keyframes bubbleMove {
+
+    from {
+
+        transform:
+            translateY(80px);
+
+        opacity: 0;
+
+    }
+
+    35% {
+
+        opacity: 1;
+
+    }
+
+    to {
+
+        transform:
+            translateY(-100px);
+
+        opacity: 0;
+
+    }
+
+}
+
+
+/* =========================================================
+   CHRY — ALI
+========================================================= */
+
+.fx-wings .wing-left {
+
+    transform-origin:
+        220px 305px;
+
+    animation:
+        wingLeft
+        .95s
+        ease
+        both;
+}
+
+
+.fx-wings .wing-right {
+
+    transform-origin:
+        280px 305px;
+
+    animation:
+        wingRight
+        .95s
+        ease
+        both;
+}
+
+
+.fx-wings .halo {
+
+    transform-origin:
+        250px 185px;
+
+    animation:
+        impactFlash
+        .8s
+        .25s
+        ease
+        both;
+}
+
+
+@keyframes wingLeft {
+
+    from {
+
+        transform:
+            scaleX(.05)
+            rotate(28deg)
+            translateX(100px);
+
+        opacity: 0;
+
+    }
+
+    to {
+
+        transform: none;
+
+        opacity: .95;
+
+    }
+
+}
+
+
+@keyframes wingRight {
+
+    from {
+
+        transform:
+            scaleX(.05)
+            rotate(-28deg)
+            translateX(-100px);
+
+        opacity: 0;
+
+    }
+
+    to {
+
+        transform: none;
+
+        opacity: .95;
+
+    }
+
+}
+
+
+/* =========================================================
+   MANU — SPADE
+========================================================= */
+
+.fx-swords .sword-left {
+
+    animation:
+        swordLeft
+        .72s
+        ease
+        both;
+}
+
+
+.fx-swords .sword-right {
+
+    animation:
+        swordRight
+        .72s
+        ease
+        both;
+}
+
+
+.fx-swords .spark {
+
+    transform-origin:
+        250px 300px;
+
+    animation:
+        impactFlash
+        .5s
+        .45s
+        ease
+        both;
+}
+
+
+@keyframes swordLeft {
+
+    from {
+
+        transform:
+            translate(-190px,120px)
+            rotate(-55deg);
+
+        opacity: 0;
+
+    }
+
+    70% {
+
+        transform:
+            translate(15px,-10px);
+
+        opacity: 1;
+
+    }
+
+    to {
+
+        transform: none;
+
+    }
+
+}
+
+
+@keyframes swordRight {
+
+    from {
+
+        transform:
+            translate(190px,120px)
+            rotate(55deg);
+
+        opacity: 0;
+
+    }
+
+    70% {
+
+        transform:
+            translate(-15px,-10px);
+
+        opacity: 1;
+
+    }
+
+    to {
+
+        transform: none;
+
+    }
+
+}
+
+
+/* =========================================================
+   GIOVANNI — AQUILA
+========================================================= */
+
+.fx-eagle .eagle {
+
+    transform-origin:
+        250px 300px;
+
+    animation:
+
+        eagleFly
+        .95s
+        ease
+        both,
+
+        eagleHover
+        2s
+        .95s
+        ease-in-out
+        infinite;
+}
+
+
+.fx-eagle .wing-l {
+
+    transform-origin:
+        235px 285px;
+
+    animation:
+        eagleFlapLeft
+        .4s
+        ease-in-out
+        infinite
+        alternate;
+}
+
+
+.fx-eagle .wing-r {
+
+    transform-origin:
+        265px 285px;
+
+    animation:
+        eagleFlapRight
+        .4s
+        ease-in-out
+        infinite
+        alternate;
+}
+
+
+@keyframes eagleFly {
+
+    from {
+
+        transform:
+            translateY(230px)
+            scale(.2);
+
+        opacity: 0;
+
+    }
+
+    70% {
+
+        transform:
+            translateY(-15px)
+            scale(1.08);
+
+        opacity: 1;
+
+    }
+
+    to {
+
+        transform: none;
+
+    }
+
+}
+
+
+@keyframes eagleHover {
+
+    50% {
+
+        transform:
+            translateY(-8px);
+
+    }
+
+}
+
+
+@keyframes eagleFlapLeft {
+
+    to {
+
+        transform:
+            rotate(-13deg);
+
+    }
+
+}
+
+
+@keyframes eagleFlapRight {
+
+    to {
+
+        transform:
+            rotate(13deg);
+
+    }
+
+}
+
+
+/* =========================================================
+   FRA — SIPARIO + BURATTINO
+========================================================= */
+
+.fx-puppet .curtain-left {
+
+    animation:
+        curtainLeft
+        .65s
+        ease
+        both;
+}
+
+
+.fx-puppet .curtain-right {
+
+    animation:
+        curtainRight
+        .65s
+        ease
+        both;
+}
+
+
+.fx-puppet .puppet-bar {
+
+    animation:
+        puppetBar
+        .35s
+        .5s
+        ease
+        both;
+}
+
+
+.fx-puppet .puppet-string {
+
+    stroke-dasharray:
+        5 7;
+
+    animation:
+
+        puppetString
+        .55s
+        .55s
+        ease
+        both,
+
+        puppetStringGlow
+        .45s
+        1.1s
+        ease-in-out
+        infinite
+        alternate;
+}
+
+
+.fx-puppet .puppet-arm-left {
+
+    transform-origin:
+        175px 315px;
+
+    animation:
+
+        puppetArmLeft
+        .8s
+        .72s
+        ease
+        both,
+
+        puppetJiggleLeft
+        .3s
+        1.55s
+        ease-in-out
+        2
+        alternate;
+}
+
+
+.fx-puppet .puppet-arm-right {
+
+    transform-origin:
+        325px 315px;
+
+    animation:
+
+        puppetArmRight
+        .8s
+        .8s
+        ease
+        both,
+
+        puppetJiggleRight
+        .3s
+        1.63s
+        ease-in-out
+        2
+        alternate;
+}
+
+
+@keyframes curtainLeft {
+
+    to {
+
+        transform:
+            translateX(-145px)
+            skewX(-6deg);
+
+        opacity: .78;
+
+    }
+
+}
+
+
+@keyframes curtainRight {
+
+    to {
+
+        transform:
+            translateX(145px)
+            skewX(6deg);
+
+        opacity: .78;
+
+    }
+
+}
+
+
+@keyframes puppetBar {
+
+    from {
+
+        transform:
+            translateY(-45px);
+
+        opacity: 0;
+
+    }
+
+    to {
+
+        opacity: .9;
+
+    }
+
+}
+
+
+@keyframes puppetString {
+
+    from {
+
+        stroke-dashoffset:
+            80;
+
+        opacity: 0;
+
+    }
+
+    to {
+
+        stroke-dashoffset:
+            0;
+
+        opacity: .9;
+
+    }
+
+}
+
+
+@keyframes puppetStringGlow {
+
+    to {
+
+        opacity: .4;
+
+    }
+
+}
+
+
+@keyframes puppetArmLeft {
+
+    from {
+
+        transform:
+            translateY(-120px)
+            rotate(-18deg)
+            scale(.35);
+
+        opacity: 0;
+
+    }
+
+    70% {
+
+        transform:
+            translateY(10px)
+            rotate(7deg)
+            scale(1.05);
+
+        opacity: 1;
+
+    }
+
+    to {
+
+        transform: none;
+
+        opacity: .96;
+
+    }
+
+}
+
+
+@keyframes puppetArmRight {
+
+    from {
+
+        transform:
+            translateY(-120px)
+            rotate(18deg)
+            scale(.35);
+
+        opacity: 0;
+
+    }
+
+    70% {
+
+        transform:
+            translateY(10px)
+            rotate(-7deg)
+            scale(1.05);
+
+        opacity: 1;
+
+    }
+
+    to {
+
+        transform: none;
+
+        opacity: .96;
+
+    }
+
+}
+
+
+@keyframes puppetJiggleLeft {
+
+    to {
+
+        transform:
+            rotate(7deg)
+            translateY(4px);
+
+    }
+
+}
+
+
+@keyframes puppetJiggleRight {
+
+    to {
+
+        transform:
+            rotate(-7deg)
+            translateY(4px);
+
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width:360px) {
+
+    .page {
+
+        padding:
+            14px
+            10px
+            25px;
+
+    }
+
+
+    .id-card {
+
+        padding: 13px;
+
+    }
+
+
+    .id-body {
+
+        gap: 11px;
+
+    }
+
+
+    .photo-frame {
+
+        width: 96px;
+
+        height: 96px;
+
+    }
+
+
+    .identity-name {
+
+        font-size: 17px;
+
+        margin-bottom: 10px;
+
+    }
+
+
+    .identity-deck {
+
+        font-size: 9px;
+
+        margin-bottom: 8px;
+
+    }
+
+
+    .stat {
+
+        min-height: 76px;
+
+    }
+
+
+    .stat-value {
+
+        font-size: 15px;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="page">
+
+
+<header class="header">
+
+
+    <a
+        id="backButton"
+        href="index.html"
+        class="back"
+        aria-label="Torna indietro">
+
+        ‹
+
+    </a>
+
+
+    <div class="brand">
+
+        <div class="brand-main">
+            ALIS
+        </div>
+
+        <div class="brand-sub">
+            DUELIST PROFILE
+        </div>
+
+    </div>
+
+
+    <div class="header-space"></div>
+
+
+</header>
+
+
+
+<div class="section-header">
+
+    <div class="section-line"></div>
+
+    <div class="section-title">
+        DUELIST ID
+    </div>
+
+    <div class="section-line right"></div>
+
+</div>
+
+
+
+<div class="id-card">
+
+
+    <div class="id-top">
+
+
+        <div class="id-title">
+            ALIS DUELIST SYSTEM
+        </div>
+
+
+        <div class="id-top-right">
+
+
+            <div class="id-code">
+                ID CARD
+            </div>
+
+
+            <div
+                id="rankBadge"
+                class="rank-badge rank-s">
+
+                <span id="rankLetter">
+                    —
+                </span>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <div class="id-body">
+
+
+        <div
+            id="photoFrame"
+            class="photo-frame"
+            role="button"
+            tabindex="0">
+
+
+            <img
+                id="profilePhoto"
+                src=""
+                alt="Foto profilo"
+                style="display:none;">
+
+
+            <div
+                id="photoPlaceholder"
+                class="photo-placeholder">
+
+                PHOTO<br>
+                NOT FOUND
+
+            </div>
+
+
+        </div>
+
+
+
+        <div class="identity-info">
+
+
+            <div class="identity-label">
+                NOME DUELLANTE
+            </div>
+
+
+            <div
+                id="duelistName"
+                class="identity-name">
+
+                DUELLANTE
+
+            </div>
+
+
+            <div class="identity-label">
+                DECK
+            </div>
+
+
+            <div
+                id="duelistDeck"
+                class="identity-deck">
+
+                DECK
+
+            </div>
+
+
+
+            <div class="id-row">
+
+                <span class="id-row-label">
+                    POSIZIONE
+                </span>
+
+                <span
+                    id="positionValue"
+                    class="id-row-value">
+
+                    —
+
+                </span>
+
+            </div>
+
+
+
+            <div class="id-row">
+
+                <span class="id-row-label">
+                    PUNTI
+                </span>
+
+                <span
+                    id="pointsValue"
+                    class="id-row-value">
+
+                    —
+
+                </span>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <div class="id-footer">
+
+
+        <div class="id-status">
+
+            <span class="status-dot"></span>
+
+            DUELLANTE ATTIVO
+
+        </div>
+
+
+        <div
+            id="duelistId"
+            class="id-number">
+
+            ALIS-ID
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+
+<!-- STATISTICHE -->
+
+<div class="stats">
+
+
+    <div class="stat">
+
+        <div class="stat-label">
+            RECORD
+        </div>
+
+        <div
+            id="recordValue"
+            class="stat-value">
+
+            —
+
+        </div>
+
+    </div>
+
+
+
+    <div class="stat">
+
+        <div class="stat-label">
+            LP TOTALI
+        </div>
+
+        <div
+            id="lpValue"
+            class="stat-value">
+
+            —
+
+        </div>
+
+    </div>
+
+
+
+    <div class="stat">
+
+        <div class="stat-label">
+            DUELLI
+        </div>
+
+        <div
+            id="duelsValue"
+            class="stat-value">
+
+            —
+
+        </div>
+
+    </div>
+
+
+</div>
+
+
+
+<!-- =====================================================
+     IL MIO DECK / IL SUO DECK
+===================================================== -->
+
+<a
+    id="neuronDeckCard"
+    class="neuron-deck-card disabled"
+    href="#"
+    target="_blank"
+    rel="noopener noreferrer">
+
+
+    <div class="neuron-deck-icon">
+
+        <svg viewBox="0 0 48 48">
+
+            <rect
+                x="12"
+                y="8"
+                width="25"
+                height="32"
+                rx="3">
+            </rect>
+
+            <rect
+                x="8"
+                y="12"
+                width="25"
+                height="32"
+                rx="3"
+                opacity=".45">
+            </rect>
+
+            <path
+                d="
+                M18 18h12
+                M18 23h8
+                M18 29h10
+                ">
+            </path>
+
+        </svg>
+
+    </div>
+
+
+    <div class="neuron-deck-info">
+
+
+        <div class="neuron-deck-kicker">
+            YU-GI-OH! NEURON
+        </div>
+
+
+        <div
+            id="neuronDeckTitle"
+            class="neuron-deck-title">
+
+            IL MIO DECK
+
+        </div>
+
+
+        <div
+            id="neuronDeckSubtitle"
+            class="neuron-deck-subtitle">
+
+            CARICAMENTO LINK...
+
+        </div>
+
+
+    </div>
+
+
+    <div class="neuron-deck-arrow">
+        ›
+    </div>
+
+
+</a>
+
+
+
+<!-- STORICO -->
+
+<div class="history">
+
+
+    <div class="section-header">
+
+        <div class="section-line"></div>
+
+        <div class="section-title">
+            STORICO DUELLI
+        </div>
+
+        <div class="section-line right"></div>
+
+    </div>
+
+
+    <div
+        id="historyList"
+        class="history-list">
+
+        <div class="loading">
+            CARICAMENTO STORICO...
+        </div>
+
+    </div>
+
+
+</div>
+
+
+
+<div class="footer">
+    ALIS • DUELIST SYSTEM
+</div>
+
+
+</div>
+
+
+
+<!-- =====================================================
+     MODAL FOTO
+===================================================== -->
+
+<div
+    id="photoModal"
+    class="photo-modal"
+    aria-hidden="true">
+
+
+    <button
+        id="photoModalClose"
+        class="photo-modal-close"
+        type="button">
+
+        ×
+
+    </button>
+
+
+    <div class="photo-modal-stage">
+
+
+        <div class="photo-modal-ring"></div>
+
+
+        <div
+            id="holoFx"
+            class="holo-fx">
+        </div>
+
+
+        <div class="photo-modal-image-wrap">
+
+            <img
+                id="photoModalImage"
+                class="photo-modal-image"
+                alt="Foto duellante">
+
+        </div>
+
+
+        <div
+            id="photoModalName"
+            class="photo-modal-name">
+
+            DUELLANTE
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+
+<script>
+
+/* =========================================================
+   SUPABASE
+========================================================= */
+
+const SUPABASE_URL =
+    "https://swbrwezlygmtsuudwlfg.supabase.co";
+
+
+const SUPABASE_KEY =
+    "sb_publishable_uV3FT9S9f6dajA4NRgofFA_cGOCvTNG";
+
+
+const DEFAULT_DUELIST_ID =
+    "d8434d0c-bfb6-4d87-9245-b1e9de2a253f";
+
+
+const urlParams =
+    new URLSearchParams(
+        window.location.search
+    );
+
+
+const DUELIST_ID =
+
+    urlParams.get("id") ||
+
+    DEFAULT_DUELIST_ID;
+
+
+const FROM_PAGE =
+
+    urlParams.get("from") ||
+
+    "home";
+
+
+let currentDuelistName =
+    "DUELLANTE";
+
+
+let fadeTimer =
+    null;
+
+
+let hideTimer =
+    null;
+
+
+/* =========================================================
+   LINK NEURON
+
+   Se nella tabella duellanti hai già una colonna come:
+   neuron_link
+   link_neuron
+   neuron_url
+   deck_link
+   link_deck
+   deck_url
+
+   il sito la legge automaticamente.
+
+   In alternativa puoi mettere qui i link manualmente.
+========================================================= */
+
+const NEURON_LINKS = {
+
+    GABRY:
+        "",
+
+    CHRY:
+        "",
+
+    FRA:
+        "",
+
+    MANU:
+        "",
+
+    ALE:
+        "",
+
+    GIO:
+        "",
+
+    ANDREA:
+        ""
+
+};
+
+
+/* =========================================================
+   NAVIGAZIONE INDIETRO
+========================================================= */
+
+function setupBackNavigation() {
+
+
+    const back =
+        document.getElementById(
+            "backButton"
+        );
+
+
+    if (
+        FROM_PAGE ===
+        "deck"
+    ) {
+
+
+        back.href =
+            "deck.html";
+
+
+        back.setAttribute(
+
+            "aria-label",
+
+            "Torna ai duellanti"
+
+        );
+
+    }
+
+
+    else {
+
+
+        back.href =
+            "index.html";
+
+
+        back.setAttribute(
+
+            "aria-label",
+
+            "Torna alla home"
+
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   FETCH
+========================================================= */
+
+async function supabaseFetch(path) {
+
+
+    const response =
+        await fetch(
+
+            SUPABASE_URL +
+            path,
+
+            {
+
+                headers: {
+
+                    "apikey":
+                        SUPABASE_KEY,
+
+                    "Authorization":
+                        "Bearer " +
+                        SUPABASE_KEY,
+
+                    "Content-Type":
+                        "application/json"
+
+                },
+
+                cache:
+                    "no-store"
+
+            }
+
+        );
+
+
+    if (!response.ok) {
+
+        throw new Error(
+            await response.text()
+        );
+
+    }
+
+
+    return await response.json();
+
+}
+
+
+/* =========================================================
+   NORMALIZZA NOME
+========================================================= */
+
+function normalizeName(name) {
+
+
+    return String(
+        name || ""
+    )
+
+        .normalize(
+            "NFD"
+        )
+
+        .replace(
+            /[\u0300-\u036f]/g,
+            ""
+        )
+
+        .trim()
+
+        .toUpperCase();
+
+}
+
+
+/* =========================================================
+   CHIAVE NEURON
+========================================================= */
+
+function getNeuronKey(name) {
+
+
+    const n =
+        normalizeName(
+            name
+        );
+
+
+    if (
+        n === "GABRY" ||
+        n === "GABRIELE"
+    ) {
+
+        return "GABRY";
+
+    }
+
+
+    if (
+        n === "CHRY" ||
+        n === "CHRISTIAN" ||
+        n === "CHRIS" ||
+        n === "CHTY"
+    ) {
+
+        return "CHRY";
+
+    }
+
+
+    if (
+        n === "FRA" ||
+        n === "FRANCESCO"
+    ) {
+
+        return "FRA";
+
+    }
+
+
+    if (
+        n === "MANU" ||
+        n === "MANUEL" ||
+        n === "MANUELE"
+    ) {
+
+        return "MANU";
+
+    }
+
+
+    if (
+        n === "ALE" ||
+        n === "ALESSANDRO"
+    ) {
+
+        return "ALE";
+
+    }
+
+
+    if (
+        n === "GIO" ||
+        n === "GIOVANNI"
+    ) {
+
+        return "GIO";
+
+    }
+
+
+    if (
+        n === "ANDREA"
+    ) {
+
+        return "ANDREA";
+
+    }
+
+
+    return n;
+
+}
+
+
+/* =========================================================
+   TROVA LINK NEURON
+========================================================= */
+
+function getNeuronLink(player) {
+
+
+    return (
+
+        player.neuron_link ||
+
+        player.link_neuron ||
+
+        player.neuron_url ||
+
+        player.url_neuron ||
+
+        player.deck_neuron ||
+
+        player.neuron_deck ||
+
+        player.deck_link ||
+
+        player.link_deck ||
+
+        player.deck_url ||
+
+        NEURON_LINKS[
+            getNeuronKey(
+                player.nome
+            )
+        ] ||
+
+        ""
+
+    );
+
+}
+
+
+/* =========================================================
+   CARD DECK
+========================================================= */
+
+function setupNeuronCard(player) {
+
+
+    const card =
+        document.getElementById(
+            "neuronDeckCard"
+        );
+
+
+    const title =
+        document.getElementById(
+            "neuronDeckTitle"
+        );
+
+
+    const subtitle =
+        document.getElementById(
+            "neuronDeckSubtitle"
+        );
+
+
+    const normalized =
+        normalizeName(
+            player.nome
+        );
+
+
+    const isGabry =
+
+        normalized === "GABRY" ||
+
+        normalized === "GABRIELE";
+
+
+    title.textContent =
+
+        isGabry
+
+            ? "IL MIO DECK"
+
+            : "IL SUO DECK";
+
+
+    const link =
+        getNeuronLink(
+            player
+        );
+
+
+    if (link) {
+
+
+        card.href =
+            link;
+
+
+        card.classList.remove(
+            "disabled"
+        );
+
+
+        subtitle.textContent =
+            "APRI IL DECK SU YU-GI-OH! NEURON";
+
+    }
+
+
+    else {
+
+
+        card.href =
+            "#";
+
+
+        card.classList.add(
+            "disabled"
+        );
+
+
+        subtitle.textContent =
+            "LINK NEURON NON INSERITO";
+
+    }
+
+}
+
+
+/* =========================================================
+   RANK
+========================================================= */
+
+function getRank(name) {
+
+
+    const n =
+        normalizeName(
+            name
+        );
+
+
+    /* GABRY + CHRY = S ORO */
+
+    if (
+
+        n === "GABRY" ||
+
+        n === "GABRIELE" ||
+
+        n === "CHRY" ||
+
+        n === "CHRISTIAN" ||
+
+        n === "CHRIS" ||
+
+        n === "CHTY"
+
+    ) {
+
+        return {
+
+            letter:
+                "S",
+
+            css:
+                "rank-s"
+
+        };
+
+    }
+
+
+    /* FRA = A ARGENTO */
+
+    if (
+        n === "FRA" ||
+        n === "FRANCESCO"
+    ) {
+
+        return {
+
+            letter:
+                "A",
+
+            css:
+                "rank-a"
+
+        };
+
+    }
+
+
+    /* MANU + ALE + GIO = B BRONZO */
+
+    if (
+
+        n === "MANU" ||
+
+        n === "MANUEL" ||
+
+        n === "MANUELE" ||
+
+        n === "ALE" ||
+
+        n === "ALESSANDRO" ||
+
+        n === "GIO" ||
+
+        n === "GIOVANNI"
+
+    ) {
+
+        return {
+
+            letter:
+                "B",
+
+            css:
+                "rank-b"
+
+        };
+
+    }
+
+
+    /* ANDREA = C VERDE */
+
+    if (
+        n === "ANDREA"
+    ) {
+
+        return {
+
+            letter:
+                "C",
+
+            css:
+                "rank-c"
+
+        };
+
+    }
+
+
+    return {
+
+        letter:
+            "—",
+
+        css:
+            "rank-b"
+
+    };
+
+}
+
+
+/* =========================================================
+   ANIMAZIONE DA NOME
+========================================================= */
+
+function getEffectType(name) {
+
+
+    const n =
+        normalizeName(
+            name
+        );
+
+
+    if (
+        n === "ALE" ||
+        n === "ALESSANDRO"
+    ) {
+
+        return "boxing";
+
+    }
+
+
+    if (
+        n === "ANDREA"
+    ) {
+
+        return "clock";
+
+    }
+
+
+    if (
+        n === "GABRY" ||
+        n === "GABRIELE"
+    ) {
+
+        return "shark";
+
+    }
+
+
+    if (
+
+        n === "CHRY" ||
+
+        n === "CHRISTIAN" ||
+
+        n === "CHRIS" ||
+
+        n === "CHTY"
+
+    ) {
+
+        return "wings";
+
+    }
+
+
+    if (
+
+        n === "MANU" ||
+
+        n === "MANUEL" ||
+
+        n === "MANUELE"
+
+    ) {
+
+        return "swords";
+
+    }
+
+
+    if (
+        n === "GIO" ||
+        n === "GIOVANNI"
+    ) {
+
+        return "eagle";
+
+    }
+
+
+    return "puppet";
+
+}
+
+
+/* =========================================================
+   ESCAPE
+========================================================= */
+
+function escapeHTML(text) {
+
+
+    return String(
+        text ?? ""
+    )
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+}
+
+
+/* =========================================================
+   CARICA PROFILO
+========================================================= */
+
+async function loadProfile() {
+
+
+    try {
+
+
+        const players =
+            await supabaseFetch(
+
+                "/rest/v1/duellanti" +
+
+                "?select=*" +
+
+                "&id=eq." +
+                encodeURIComponent(
+                    DUELIST_ID
+                ) +
+
+                "&limit=1"
+
+            );
+
+
+        if (
+            !players ||
+            players.length === 0
+        ) {
+
+            throw new Error(
+                "Duellante non trovato"
+            );
+
+        }
+
+
+        const player =
+            players[0];
+
+
+        currentDuelistName =
+
+            player.nome ||
+
+            "DUELLANTE";
+
+
+        /* NOME */
+
+        document.getElementById(
+            "duelistName"
+        ).textContent =
+
+            currentDuelistName;
+
+
+        /* DECK */
+
+        document.getElementById(
+            "duelistDeck"
+        ).textContent =
+
+            player.deck ??
+
+            player.deck_nome ??
+
+            player.archetipo ??
+
+            "DECK";
+
+
+        /* CARD NEURON */
+
+        setupNeuronCard(
+            player
+        );
+
+
+        /* PUNTI */
+
+        document.getElementById(
+            "pointsValue"
+        ).textContent =
+
+            player.punti ??
+
+            0;
+
+
+        /* POSIZIONE */
+
+        document.getElementById(
+            "positionValue"
+        ).textContent =
+
+            player.posizione !== null &&
+            player.posizione !== undefined
+
+                ? player.posizione +
+                  "°"
+
+                : "—";
+
+
+        /* ID */
+
+        document.getElementById(
+            "duelistId"
+        ).textContent =
+
+            "ALIS-" +
+
+            String(
+                player.id
+            )
+
+            .substring(
+                0,
+                8
+            )
+
+            .toUpperCase();
+
+
+        /* RANK */
+
+        const rank =
+            getRank(
+                currentDuelistName
+            );
+
+
+        document.getElementById(
+            "rankLetter"
+        ).textContent =
+
+            rank.letter;
+
+
+        document.getElementById(
+            "rankBadge"
+        ).className =
+
+            "rank-badge " +
+            rank.css;
+
+
+        /* FOTO */
+
+        const photoURL =
+
+            player.foto ||
+
+            player.foto_url ||
+
+            player.photo ||
+
+            player.photo_url ||
+
+            player.immagine ||
+
+            player.immagine_url ||
+
+            player.avatar ||
+
+            player.avatar_url ||
+
+            "";
+
+
+        const photo =
+            document.getElementById(
+                "profilePhoto"
+            );
+
+
+        const placeholder =
+            document.getElementById(
+                "photoPlaceholder"
+            );
+
+
+        if (photoURL) {
+
+
+            photo.src =
+                photoURL;
+
+
+            photo.style.display =
+                "block";
+
+
+            placeholder.style.display =
+                "none";
+
+        }
+
+
+        else {
+
+
+            photo.style.display =
+                "none";
+
+
+            placeholder.style.display =
+                "flex";
+
+        }
+
+
+        /* DUELLI */
+
+        const duels =
+            await supabaseFetch(
+
+                "/rest/v1/duelli" +
+
+                "?select=*" +
+
+                "&or=(" +
+
+                    "duellante_a.eq." +
+                    encodeURIComponent(
+                        DUELIST_ID
+                    ) +
+
+                    "," +
+
+                    "duellante_b.eq." +
+                    encodeURIComponent(
+                        DUELIST_ID
+                    ) +
+
+                ")"
+
+            );
+
+
+        let wins =
+            0;
+
+
+        let draws =
+            0;
+
+
+        let losses =
+            0;
+
+
+        let totalLP =
+            0;
+
+
+        let played =
+            0;
+
+
+        duels.forEach(
+
+            function(duel) {
+
+
+                const isA =
+
+                    duel.duellante_a ===
+                    DUELIST_ID;
+
+
+                const myLP =
+
+                    isA
+
+                        ? duel["LP_a"]
+
+                        : duel["LP_b"];
+
+
+                const opponentLP =
+
+                    isA
+
+                        ? duel["LP_b"]
+
+                        : duel["LP_a"];
+
+
+                if (
+                    myLP !== null &&
+                    myLP !== undefined
+                ) {
+
+                    totalLP +=
+                        Number(
+                            myLP
+                        );
+
+                }
+
+
+                if (
+
+                    myLP !== null &&
+                    myLP !== undefined &&
+
+                    opponentLP !== null &&
+                    opponentLP !== undefined
+
+                ) {
+
+
+                    played++;
+
+
+                    if (
+                        Number(myLP) >
+                        Number(opponentLP)
+                    ) {
+
+                        wins++;
+
+                    }
+
+
+                    else if (
+                        Number(myLP) <
+                        Number(opponentLP)
+                    ) {
+
+                        losses++;
+
+                    }
+
+
+                    else {
+
+                        draws++;
+
+                    }
+
+                }
+
+            }
+
+        );
+
+
+        document.getElementById(
+            "recordValue"
+        ).textContent =
+
+            wins +
+            "-" +
+            draws +
+            "-" +
+            losses;
+
+
+        document.getElementById(
+            "lpValue"
+        ).textContent =
+
+            totalLP;
+
+
+        document.getElementById(
+            "duelsValue"
+        ).textContent =
+
+            played;
+
+
+        await buildHistory(
+            duels
+        );
+
+
+    }
+
+    catch(error) {
+
+
+        console.error(
+            error
+        );
+
+
+        document.getElementById(
+            "historyList"
+        ).innerHTML =
+
+            '<div class="error">' +
+
+            'ERRORE NEL CARICAMENTO DEL PROFILO' +
+
+            '</div>';
+
+    }
+
+}
+
+
+/* =========================================================
+   STORICO
+========================================================= */
+
+async function buildHistory(duels) {
+
+
+    const list =
+        document.getElementById(
+            "historyList"
+        );
+
+
+    list.innerHTML =
+        "";
+
+
+    if (
+        !duels ||
+        duels.length === 0
+    ) {
+
+
+        list.innerHTML =
+
+            '<div class="loading">' +
+
+            'NESSUN DUELLO REGISTRATO' +
+
+            '</div>';
+
+
+        return;
+
+    }
+
+
+    let duelNumber =
+        0;
+
+
+    for (
+        const duel of duels
+    ) {
+
+
+        const isA =
+
+            duel.duellante_a ===
+            DUELIST_ID;
+
+
+        const opponentId =
+
+            isA
+
+                ? duel.duellante_b
+
+                : duel.duellante_a;
+
+
+        const myLP =
+
+            isA
+
+                ? duel["LP_a"]
+
+                : duel["LP_b"];
+
+
+        const opponentLP =
+
+            isA
+
+                ? duel["LP_b"]
+
+                : duel["LP_a"];
+
+
+        let opponentName =
+            "AVVERSARIO";
+
+
+        try {
+
+
+            if (opponentId) {
+
+
+                const opponent =
+                    await supabaseFetch(
+
+                        "/rest/v1/duellanti" +
+
+                        "?select=nome" +
+
+                        "&id=eq." +
+                        encodeURIComponent(
+                            opponentId
+                        ) +
+
+                        "&limit=1"
+
+                    );
+
+
+                opponentName =
+
+                    opponent?.[0]?.nome ||
+
+                    opponentName;
+
+            }
+
+        }
+
+        catch(error) {
+
+            console.error(
+                error
+            );
+
+        }
+
+
+        let result =
+            "IN PROGRAMMA";
+
+
+        let resultClass =
+            "pending";
+
+
+        if (
+
+            myLP !== null &&
+            myLP !== undefined &&
+
+            opponentLP !== null &&
+            opponentLP !== undefined
+
+        ) {
+
+
+            duelNumber++;
+
+
+            if (
+                Number(myLP) >
+                Number(opponentLP)
+            ) {
+
+
+                result =
+                    "VITTORIA";
+
+
+                resultClass =
+                    "win";
+
+            }
+
+
+            else if (
+                Number(myLP) <
+                Number(opponentLP)
+            ) {
+
+
+                result =
+                    "SCONFITTA";
+
+
+                resultClass =
+                    "loss";
+
+            }
+
+
+            else {
+
+
+                result =
+                    "PAREGGIO";
+
+
+                resultClass =
+                    "draw";
+
+            }
+
+        }
+
+
+        const number =
+
+            duelNumber > 0
+
+                ? duelNumber
+
+                : duels.indexOf(
+                    duel
+                ) + 1;
+
+
+        const item =
+            document.createElement(
+                "div"
+            );
+
+
+        item.className =
+            "duel-item";
+
+
+        item.innerHTML = `
+
+            <div class="duel-number">
+
+                ${number}
+
+            </div>
+
+
+            <div class="duel-info">
+
+                <div class="duel-label">
+
+                    DUELLO ${number}
+
+                </div>
+
+                <div class="duel-opponent">
+
+                    ${escapeHTML(
+                        opponentName
+                    )}
+
+                </div>
+
+            </div>
+
+
+            <div class="duel-result ${resultClass}">
+
+                ${result}
+
+            </div>
+
+        `;
+
+
+        list.appendChild(
+            item
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   SVG ANIMAZIONI
+========================================================= */
+
+function effectSVG(type) {
+
+
+    const start =
+        '<svg viewBox="0 0 500 600" aria-hidden="true">';
+
+
+    const end =
+        '</svg>';
+
+
+    /* ALE */
+
+    if (
+        type === "boxing"
+    ) {
+
+
+        return start + `
+
+        <g class="fx-boxing">
+
+            <g class="glove-left">
+
+                <path
+                    class="holo-stroke"
+                    d="
+                    M80 300
+                    c-20-42 10-80 52-78
+                    25-20 67-4 70 28
+                    24 11 28 44 9 61
+                    -17 15-39 17-58 10
+                    l-28 42
+                    -55-24
+                    20-30z
+                    ">
+                </path>
+
+            </g>
+
+
+            <g class="glove-right">
+
+                <path
+                    class="holo-stroke"
+                    d="
+                    M420 300
+                    c20-42-10-80-52-78
+                    -25-20-67-4-70 28
+                    -24 11-28 44-9 61
+                    17 15 39 17 58 10
+                    l28 42
+                    55-24
+                    -20-30z
+                    ">
+                </path>
+
+            </g>
+
+
+            <g class="impact">
+
+                <circle
+                    class="holo-fill"
+                    cx="250"
+                    cy="300"
+                    r="18">
+                </circle>
+
+
+                <path
+                    class="holo-thin"
+                    d="
+                    M250 245v-38
+                    M250 393v-38
+                    M195 300h-38
+                    M343 300h-38
+                    ">
+                </path>
+
+            </g>
+
+        </g>
+
+        ` + end;
+
+    }
+
+
+    /* ANDREA */
+
+    if (
+        type === "clock"
+    ) {
+
+
+        return start + `
+
+        <g class="fx-clock">
+
+
+            <path
+                class="holo-thin watch-chain"
+                d="
+                M250 118
+                c-55-48-120-22-139 24
+                -12 30 15 50 42 35
+                22-12 19-38 2-47
+                ">
+            </path>
+
+
+            <g class="pocket-watch">
+
+
+                <g class="watch-lid">
+
+                    <circle
+                        class="holo-stroke"
+                        cx="127"
+                        cy="315"
+                        r="94">
+                    </circle>
+
+
+                    <circle
+                        class="holo-thin"
+                        cx="127"
+                        cy="315"
+                        r="74"
+                        stroke-dasharray="7 10">
+                    </circle>
+
+
+                    <path
+                        class="holo-thin"
+                        d="
+                        M62 315h130
+                        M127 250v130
+                        M80 268l94 94
+                        M174 268l-94 94
+                        ">
+                    </path>
+
+                </g>
+
+
+                <ellipse
+                    class="holo-stroke"
+                    cx="250"
+                    cy="143"
+                    rx="30"
+                    ry="21">
+                </ellipse>
+
+
+                <circle
+                    class="holo-stroke"
+                    cx="250"
+                    cy="315"
+                    r="128">
+                </circle>
+
+
+                <circle
+                    class="holo-thin"
+                    cx="250"
+                    cy="315"
+                    r="108"
+                    stroke-dasharray="4 12">
+                </circle>
+
+
+                <circle
+                    class="holo-thin"
+                    cx="250"
+                    cy="315"
+                    r="91">
+                </circle>
+
+
+                <path
+                    class="holo-thin"
+                    d="
+                    M250 218v18
+                    M250 394v18
+                    M153 315h18
+                    M329 315h18
+                    ">
+                </path>
+
+
+                <path
+                    class="holo-thin hour-hand"
+                    d="M250 315v-55">
+                </path>
+
+
+                <path
+                    class="holo-thin minute-hand"
+                    d="M250 315l61 38">
+                </path>
+
+
+                <circle
+                    class="holo-fill"
+                    cx="250"
+                    cy="315"
+                    r="9">
+                </circle>
+
+
+            </g>
+
+
+        </g>
+
+        ` + end;
+
+    }
+
+
+    /* GABRY */
+
+    if (
+        type === "shark"
+    ) {
+
+
+        return start + `
+
+        <g class="fx-shark">
+
+
+            <g class="jaw-top">
+
+                <path
+                    class="holo-stroke"
+                    d="
+                    M102 230
+                    Q250 92 398 230
+                    Q336 194 250 190
+                    Q164 194 102 230z
+                    ">
+                </path>
+
+
+                <path
+                    class="holo-thin"
+                    d="
+                    M126 223
+                    l23 42
+                    24-54
+                    25 49
+                    25-62
+                    27 60
+                    27-60
+                    25 62
+                    25-49
+                    24 54
+                    23-42
+                    ">
+                </path>
+
+            </g>
+
+
+            <g class="jaw-bottom">
+
+                <path
+                    class="holo-stroke"
+                    d="
+                    M102 370
+                    Q250 508 398 370
+                    Q336 406 250 410
+                    Q164 406 102 370z
+                    ">
+                </path>
+
+
+                <path
+                    class="holo-thin"
+                    d="
+                    M126 377
+                    l23-42
+                    24 54
+                    25-49
+                    25 62
+                    27-60
+                    27 60
+                    25-62
+                    25 49
+                    24-54
+                    23 42
+                    ">
+                </path>
+
+            </g>
+
+
+            <path
+                class="holo-thin water-wave"
+                d="
+                M40 430
+                c45-35 90 35 135 0
+                s90 35 135 0
+                90 35 150 0
+                ">
+            </path>
+
+
+            <circle
+                class="holo-thin bubble"
+                cx="90"
+                cy="445"
+                r="12">
+            </circle>
+
+
+            <circle
+                class="holo-thin bubble"
+                cx="405"
+                cy="455"
+                r="8">
+            </circle>
+
+
+        </g>
+
+        ` + end;
+
+    }
+
+
+    /* CHRY */
+
+    if (
+        type === "wings"
+    ) {
+
+
+        return start + `
+
+        <g class="fx-wings">
+
+
+            <g class="wing-left">
+
+                <path
+                    class="holo-stroke"
+                    d="
+                    M225 300
+                    C178 214 106 168 48 181
+                    c51 25 71 62 86 95
+                    -37-24-73-20-104-5
+                    47 20 70 50 84 80
+                    -38-8-62 2-82 18
+                    54 15 102 29 151 8
+                    28-12 43-40 42-77z
+                    ">
+                </path>
+
+            </g>
+
+
+            <g class="wing-right">
+
+                <path
+                    class="holo-stroke"
+                    d="
+                    M275 300
+                    c47-86 119-132 177-119
+                    -51 25-71 62-86 95
+                    37-24 73-20 104-5
+                    -47 20-70 50-84 80
+                    38-8 62 2 82 18
+                    -54 15-102 29-151 8
+                    -28-12-43-40-42-77z
+                    ">
+                </path>
+
+            </g>
+
+
+            <ellipse
+                class="holo-thin halo"
+                cx="250"
+                cy="185"
+                rx="62"
+                ry="18">
+            </ellipse>
+
+
+        </g>
+
+        ` + end;
+
+    }
+
+
+    /* MANU */
+
+    if (
+        type === "swords"
+    ) {
+
+
+        return start + `
+
+        <g class="fx-swords">
+
+
+            <g class="sword-left">
+
+                <path
+                    class="holo-stroke"
+                    d="
+                    M95 475
+                    l34-9
+                    243-269
+                    22-67
+                    -64 28
+                    -243 269z
+                    ">
+                </path>
+
+            </g>
+
+
+            <g class="sword-right">
+
+                <path
+                    class="holo-stroke"
+                    d="
+                    M405 475
+                    l-34-9
+                    -243-269
+                    -22-67
+                    64 28
+                    243 269z
+                    ">
+                </path>
+
+            </g>
+
+
+            <g class="spark">
+
+                <circle
+                    class="holo-fill"
+                    cx="250"
+                    cy="300"
+                    r="13">
+                </circle>
+
+            </g>
+
+
+        </g>
+
+        ` + end;
+
+    }
+
+
+    /* GIOVANNI */
+
+    if (
+        type === "eagle"
+    ) {
+
+
+        return start + `
+
+        <g class="fx-eagle">
+
+
+            <g class="eagle">
+
+
+                <path
+                    class="holo-stroke wing-l"
+                    d="
+                    M242 292
+                    C190 216 111 180 39 197
+                    c52 18 84 44 105 71
+                    -47-17-84-11-117 5
+                    52 14 91 37 121 69
+                    -42-2-70 12-94 31
+                    66 11 126 10 174-31
+                    18-15 22-32 14-50z
+                    ">
+                </path>
+
+
+                <path
+                    class="holo-stroke wing-r"
+                    d="
+                    M258 292
+                    c52-76 131-112 203-95
+                    -52 18-84 44-105 71
+                    47-17 84-11 117 5
+                    -52 14-91 37-121 69
+                    42-2 70 12 94 31
+                    -66 11-126 10-174-31
+                    -18-15-22-32-14-50z
+                    ">
+                </path>
+
+
+                <path
+                    class="holo-stroke"
+                    d="
+                    M220 268
+                    c10-31 26-47 30-70
+                    5 23 21 39 31 70
+                    l-12 104
+                    -19 53
+                    -19-53z
+                    ">
+                </path>
+
+
+                <path
+                    class="holo-fill"
+                    d="
+                    M250 200
+                    l45 20
+                    -39 13z
+                    ">
+                </path>
+
+
+            </g>
+
+
+        </g>
+
+        ` + end;
+
+    }
+
+
+    /* FRA */
+
+    return start + `
+
+    <g class="fx-puppet">
+
+
+        <g class="curtain-left">
+
+            <path
+                class="holo-stroke"
+                d="
+                M28 105
+                Q95 88 174 124
+                l12 380
+                Q90 527 20 485z
+                ">
+            </path>
+
+        </g>
+
+
+        <g class="curtain-right">
+
+            <path
+                class="holo-stroke"
+                d="
+                M472 105
+                q-67-17-146 19
+                l-12 380
+                q96 23 166-19z
+                ">
+            </path>
+
+        </g>
+
+
+        <path
+            class="holo-stroke"
+            d="
+            M25 82
+            Q250 34 475 82
+            v72
+            Q250 120 25 154z
+            ">
+        </path>
+
+
+        <g class="puppet-bar">
+
+            <path
+                class="holo-stroke"
+                d="
+                M155 130
+                h190
+                l18 16
+                -18 16
+                H155
+                l-18-16z
+                ">
+            </path>
+
+        </g>
+
+
+        <path
+            class="holo-thin puppet-string"
+            d="
+            M190 150L160 280
+            M190 150l34 135
+            M310 150l-34 135
+            M310 150l31 130
+            ">
+        </path>
+
+
+        <g class="puppet-arm-left">
+
+            <path
+                class="holo-stroke"
+                d="
+                M135 286
+                c17-24 48-26 63-4
+                l25 58
+                -34 15
+                -18-34
+                -21 71
+                -39-12
+                18-79z
+                ">
+            </path>
+
+
+            <circle
+                class="holo-thin"
+                cx="162"
+                cy="293"
+                r="14">
+            </circle>
+
+
+            <path
+                class="holo-stroke"
+                d="
+                M112 377
+                l39 12
+                -11 59
+                -37-10z
+                ">
+            </path>
+
+        </g>
+
+
+        <g class="puppet-arm-right">
+
+            <path
+                class="holo-stroke"
+                d="
+                M365 286
+                c-17-24-48-26-63-4
+                l-25 58
+                34 15
+                18-34
+                21 71
+                39-12
+                -18-79z
+                ">
+            </path>
+
+
+            <circle
+                class="holo-thin"
+                cx="338"
+                cy="293"
+                r="14">
+            </circle>
+
+
+            <path
+                class="holo-stroke"
+                d="
+                M388 377
+                l-39 12
+                11 59
+                37-10z
+                ">
+            </path>
+
+        </g>
+
+
+    </g>
+
+    ` + end;
+
+}
+
+
+/* =========================================================
+   AUDIO
+========================================================= */
+
+let audioContext =
+    null;
+
+
+function getAudioContext() {
+
+
+    if (!audioContext) {
+
+
+        const AudioContextClass =
+
+            window.AudioContext ||
+
+            window.webkitAudioContext;
+
+
+        if (!AudioContextClass) {
+
+            return null;
+
+        }
+
+
+        audioContext =
+            new AudioContextClass();
+
+    }
+
+
+    if (
+        audioContext.state ===
+        "suspended"
+    ) {
+
+        audioContext
+            .resume()
+            .catch(
+                function(){}
+            );
+
+    }
+
+
+    return audioContext;
+
+}
+
+
+function tone(
+    frequency,
+    duration = .1,
+    volume = .03,
+    type = "sine",
+    delay = 0,
+    endFrequency = null
+) {
+
+
+    const ctx =
+        getAudioContext();
+
+
+    if (!ctx) {
+
+        return;
+
+    }
+
+
+    const now =
+        ctx.currentTime;
+
+
+    const oscillator =
+        ctx.createOscillator();
+
+
+    const gain =
+        ctx.createGain();
+
+
+    oscillator.type =
+        type;
+
+
+    oscillator.frequency
+        .setValueAtTime(
+
+            frequency,
+
+            now +
+            delay
+
+        );
+
+
+    if (endFrequency) {
+
+
+        oscillator.frequency
+            .exponentialRampToValueAtTime(
+
+                endFrequency,
+
+                now +
+                delay +
+                duration
+
+            );
+
+    }
+
+
+    gain.gain
+        .setValueAtTime(
+
+            .0001,
+
+            now +
+            delay
+
+        );
+
+
+    gain.gain
+        .exponentialRampToValueAtTime(
+
+            volume,
+
+            now +
+            delay +
+            .01
+
+        );
+
+
+    gain.gain
+        .exponentialRampToValueAtTime(
+
+            .0001,
+
+            now +
+            delay +
+            duration
+
+        );
+
+
+    oscillator
+        .connect(
+            gain
+        )
+        .connect(
+            ctx.destination
+        );
+
+
+    oscillator.start(
+
+        now +
+        delay
+
+    );
+
+
+    oscillator.stop(
+
+        now +
+        delay +
+        duration +
+        .03
+
+    );
+
+}
+
+
+function noise(
+    duration = .15,
+    volume = .03,
+    delay = 0
+) {
+
+
+    const ctx =
+        getAudioContext();
+
+
+    if (!ctx) {
+
+        return;
+
+    }
+
+
+    const buffer =
+        ctx.createBuffer(
+
+            1,
+
+            Math.floor(
+                ctx.sampleRate *
+                duration
+            ),
+
+            ctx.sampleRate
+
+        );
+
+
+    const data =
+        buffer.getChannelData(
+            0
+        );
+
+
+    for (
+        let i = 0;
+        i < data.length;
+        i++
+    ) {
+
+        data[i] =
+            Math.random() *
+            2 -
+            1;
+
+    }
+
+
+    const source =
+        ctx.createBufferSource();
+
+
+    const gain =
+        ctx.createGain();
+
+
+    source.buffer =
+        buffer;
+
+
+    gain.gain
+        .setValueAtTime(
+
+            volume,
+
+            ctx.currentTime +
+            delay
+
+        );
+
+
+    gain.gain
+        .exponentialRampToValueAtTime(
+
+            .0001,
+
+            ctx.currentTime +
+            delay +
+            duration
+
+        );
+
+
+    source
+        .connect(
+            gain
+        )
+        .connect(
+            ctx.destination
+        );
+
+
+    source.start(
+
+        ctx.currentTime +
+        delay
+
+    );
+
+}
+
+
+/* =========================================================
+   CLICK ALIS
+========================================================= */
+
+function playSelectionSound() {
+
+
+    tone(
+        980,
+        .045,
+        .032,
+        "square",
+        0,
+        1380
+    );
+
+
+    tone(
+        1650,
+        .06,
+        .02,
+        "sine",
+        .032,
+        2050
+    );
+
+}
+
+
+/* =========================================================
+   SUONI SPECIALI
+========================================================= */
+
+function playEffectSound(type) {
+
+
+    if (
+        type === "boxing"
+    ) {
+
+        noise(
+            .1,
+            .06,
+            .16
+        );
+
+        tone(
+            85,
+            .14,
+            .07,
+            "sine",
+            .16
+        );
+
+        noise(
+            .1,
+            .055,
+            .5
+        );
+
+        return;
+
+    }
+
+
+    if (
+        type === "clock"
+    ) {
+
+        tone(
+            500,
+            .12,
+            .025,
+            "sine",
+            .15
+        );
+
+        tone(
+            1450,
+            .045,
+            .024,
+            "triangle",
+            .45
+        );
+
+        tone(
+            1150,
+            .045,
+            .024,
+            "triangle",
+            .72
+        );
+
+        tone(
+            1450,
+            .045,
+            .024,
+            "triangle",
+            1
+        );
+
+        tone(
+            1850,
+            .25,
+            .018,
+            "sine",
+            1.48
+        );
+
+        return;
+
+    }
+
+
+    if (
+        type === "shark"
+    ) {
+
+        noise(
+            .6,
+            .025,
+            .05
+        );
+
+        tone(
+            95,
+            .45,
+            .05,
+            "sawtooth",
+            .08
+        );
+
+        noise(
+            .25,
+            .05,
+            .45
+        );
+
+        return;
+
+    }
+
+
+    if (
+        type === "wings"
+    ) {
+
+        noise(
+            .45,
+            .03,
+            .08
+        );
+
+        tone(
+            550,
+            .35,
+            .018,
+            "sine",
+            .15,
+            900
+        );
+
+        return;
+
+    }
+
+
+    if (
+        type === "swords"
+    ) {
+
+        tone(
+            1450,
+            .45,
+            .035,
+            "triangle",
+            .3
+        );
+
+        tone(
+            2100,
+            .25,
+            .024,
+            "sine",
+            .3
+        );
+
+        noise(
+            .12,
+            .045,
+            .3
+        );
+
+        return;
+
+    }
+
+
+    if (
+        type === "eagle"
+    ) {
+
+        tone(
+            780,
+            .16,
+            .026,
+            "sawtooth",
+            .2
+        );
+
+        tone(
+            1120,
+            .2,
+            .024,
+            "triangle",
+            .34
+        );
+
+        return;
+
+    }
+
+
+    /* FRA */
+
+    noise(
+        .38,
+        .025,
+        .05
+    );
+
+    tone(
+        320,
+        .1,
+        .025,
+        "triangle",
+        .35
+    );
+
+    tone(
+        820,
+        .11,
+        .022,
+        "triangle",
+        .95
+    );
+
+}
+
+
+/* =========================================================
+   DISSOLVENZA
+========================================================= */
+
+function clearEffectTimers() {
+
+
+    if (fadeTimer) {
+
+        clearTimeout(
+            fadeTimer
+        );
+
+    }
+
+
+    if (hideTimer) {
+
+        clearTimeout(
+            hideTimer
+        );
+
+    }
+
+
+    fadeTimer =
+        null;
+
+
+    hideTimer =
+        null;
+
+}
+
+
+function getDissolveDelay(type) {
+
+
+    if (
+        type === "puppet"
+    ) {
+
+        return 2450;
+
+    }
+
+
+    if (
+        type === "clock"
+    ) {
+
+        return 2100;
+
+    }
+
+
+    return 1650;
+
+}
+
+
+/* =========================================================
+   APRE FOTO
+========================================================= */
+
+function openPhoto() {
+
+
+    const image =
+        document.getElementById(
+            "profilePhoto"
+        );
+
+
+    if (
+
+        image.style.display ===
+        "none"
+
+        ||
+
+        !image.src
+
+    ) {
+
+        return;
+
+    }
+
+
+    const modal =
+        document.getElementById(
+            "photoModal"
+        );
+
+
+    const effect =
+        document.getElementById(
+            "holoFx"
+        );
+
+
+    const type =
+        getEffectType(
+            currentDuelistName
+        );
+
+
+    clearEffectTimers();
+
+
+    document.getElementById(
+        "photoModalImage"
+    ).src =
+
+        image.currentSrc ||
+
+        image.src;
+
+
+    document.getElementById(
+        "photoModalName"
+    ).textContent =
+
+        currentDuelistName;
+
+
+    effect.className =
+
+        "holo-fx fx-" +
+        type;
+
+
+    effect.style.opacity =
+        "1";
+
+
+    effect.style.visibility =
+        "visible";
+
+
+    effect.innerHTML =
+        effectSVG(
+            type
+        );
+
+
+    void effect.offsetWidth;
+
+
+    modal.classList.add(
+        "open"
+    );
+
+
+    modal.setAttribute(
+        "aria-hidden",
+        "false"
+    );
+
+
+    document.body.style.overflow =
+        "hidden";
+
+
+    playEffectSound(
+        type
+    );
+
+
+    fadeTimer =
+        setTimeout(
+
+            function() {
+
+
+                if (
+                    !modal.classList.contains(
+                        "open"
+                    )
+                ) {
+
+                    return;
+
+                }
+
+
+                effect.classList.add(
+                    "fade"
+                );
+
+
+                effect.style.opacity =
+                    "0";
+
+
+                hideTimer =
+                    setTimeout(
+
+                        function() {
+
+
+                            if (
+                                modal.classList.contains(
+                                    "open"
+                                )
+                            ) {
+
+                                effect.style.visibility =
+                                    "hidden";
+
+                            }
+
+                        },
+
+                        850
+
+                    );
+
+
+            },
+
+            getDissolveDelay(
+                type
+            )
+
+        );
+
+}
+
+
+/* =========================================================
+   CHIUDE FOTO
+========================================================= */
+
+function closePhoto() {
+
+
+    const modal =
+        document.getElementById(
+            "photoModal"
+        );
+
+
+    const effect =
+        document.getElementById(
+            "holoFx"
+        );
+
+
+    modal.classList.remove(
+        "open"
+    );
+
+
+    modal.setAttribute(
+        "aria-hidden",
+        "true"
+    );
+
+
+    document.body.style.overflow =
+        "";
+
+
+    clearEffectTimers();
+
+
+    effect.className =
+        "holo-fx";
+
+
+    effect.style.opacity =
+        "1";
+
+
+    effect.style.visibility =
+        "visible";
+
+
+    effect.innerHTML =
+        "";
+
+}
+
+
+/* =========================================================
+   EVENTI FOTO
+========================================================= */
+
+document.getElementById(
+    "photoFrame"
+)
+.addEventListener(
+
+    "click",
+
+    openPhoto
+
+);
+
+
+document.getElementById(
+    "photoFrame"
+)
+.addEventListener(
+
+    "keydown",
+
+    function(event) {
+
+
+        if (
+            event.key === "Enter" ||
+            event.key === " "
+        ) {
+
+            event.preventDefault();
+
+            openPhoto();
+
+        }
+
+    }
+
+);
+
+
+document.getElementById(
+    "photoModalClose"
+)
+.addEventListener(
+
+    "click",
+
+    function(event) {
+
+        event.stopPropagation();
+
+        closePhoto();
+
+    }
+
+);
+
+
+document.getElementById(
+    "photoModal"
+)
+.addEventListener(
+
+    "click",
+
+    function(event) {
+
+
+        if (
+            event.target ===
+            document.getElementById(
+                "photoModal"
+            )
+        ) {
+
+            closePhoto();
+
+        }
+
+    }
+
+);
+
+
+document.addEventListener(
+
+    "keydown",
+
+    function(event) {
+
+
+        if (
+            event.key ===
+            "Escape"
+        ) {
+
+            closePhoto();
+
+        }
+
+    }
+
+);
+
+
+/* =========================================================
+   SUONO TECNOLOGICO
+========================================================= */
+
+document.addEventListener(
+
+    "pointerdown",
+
+    function(event) {
+
+
+        const target =
+            event.target.closest(
+
+                "a," +
+
+                "button," +
+
+                ".stat," +
+
+                ".duel-item," +
+
+                ".photo-frame," +
+
+                ".neuron-deck-card," +
+
+                "[role='button']"
+
+            );
+
+
+        if (target) {
+
+            playSelectionSound();
+
+        }
+
+    },
+
+    {
+        passive: true
+    }
+
+);
+
+
+/* =========================================================
+   ERRORE FOTO
+========================================================= */
+
+document.getElementById(
+    "profilePhoto"
+)
+.addEventListener(
+
+    "error",
+
+    function() {
+
+
+        this.style.display =
+            "none";
+
+
+        document.getElementById(
+            "photoPlaceholder"
+        ).style.display =
+            "flex";
+
+    }
+
+);
+
+
+/* =========================================================
+   AVVIO
+========================================================= */
+
+setupBackNavigation();
+
+loadProfile();
+
+
+setInterval(
+
+    loadProfile,
+
+    30000
+
+);
+
+</script>
+
+
+</body>
+
+</html>
