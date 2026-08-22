@@ -1,0 +1,2152 @@
+```html
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<title>ALIS • Prossimo Duello</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+href="https://fonts.googleapis.com"
+crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&display=swap"
+rel="stylesheet">
+
+<style>
+
+* {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100%;
+    font-family: 'Orbitron', sans-serif;
+    color: white;
+    overflow-x: hidden;
+}
+
+body {
+
+    background:
+
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(0,213,255,.14),
+            transparent 32%
+        ),
+
+        radial-gradient(
+            circle at 10% 70%,
+            rgba(0,112,255,.08),
+            transparent 35%
+        ),
+
+        linear-gradient(
+            180deg,
+            #020914 0%,
+            #041322 48%,
+            #020812 100%
+        );
+}
+
+body::before {
+
+    content: "";
+
+    position: fixed;
+
+    inset: -80px;
+
+    z-index: -3;
+
+    background-image:
+
+        linear-gradient(
+            rgba(0,220,255,.045) 1px,
+            transparent 1px
+        ),
+
+        linear-gradient(
+            90deg,
+            rgba(0,220,255,.045) 1px,
+            transparent 1px
+        );
+
+    background-size: 42px 42px;
+
+    transform:
+        perspective(600px)
+        rotateX(58deg)
+        scale(1.8)
+        translateY(80px);
+
+    transform-origin: center bottom;
+
+    animation:
+        gridMove 18s linear infinite;
+
+    pointer-events: none;
+}
+
+@keyframes gridMove {
+
+    from {
+        background-position: 0 0, 0 0;
+    }
+
+    to {
+        background-position: 0 42px, 42px 0;
+    }
+
+}
+
+body::after {
+
+    content: "";
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: -2;
+
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            circle,
+            transparent 35%,
+            rgba(0,0,0,.32) 100%
+        );
+}
+
+.container {
+
+    width: 100%;
+
+    max-width: 560px;
+
+    margin: 0 auto;
+
+    padding: 18px 14px 30px;
+}
+
+.header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 18px;
+}
+
+.brand-main {
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    letter-spacing: 2.2px;
+
+    text-shadow:
+        0 0 8px rgba(0,220,255,.55);
+}
+
+.brand-sub {
+
+    margin-top: 4px;
+
+    font-size: 7px;
+
+    letter-spacing: 2.8px;
+
+    color:
+        rgba(175,235,255,.62);
+}
+
+.back {
+
+    text-decoration: none;
+
+    color:
+        rgba(180,240,255,.8);
+
+    font-family: Arial,sans-serif;
+
+    font-size: 22px;
+
+    width: 34px;
+
+    height: 34px;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border:
+        1px solid rgba(120,225,255,.25);
+
+    background:
+        rgba(5,35,55,.5);
+}
+
+.section-header {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin-bottom: 10px;
+}
+
+.section-line {
+
+    flex: 1;
+
+    height: 1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(0,220,255,.5)
+        );
+}
+
+.section-line.right {
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(0,220,255,.5),
+            transparent
+        );
+}
+
+.section-title {
+
+    font-size: 8px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================
+   PROFILO
+========================================= */
+
+.profile {
+
+    position: relative;
+
+    text-align: center;
+
+    padding: 22px 15px 20px;
+
+    border-radius: 20px;
+
+    border:
+        1px solid rgba(135,235,255,.23);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(19,71,98,.42),
+            rgba(4,27,48,.62)
+        );
+
+    box-shadow:
+
+        inset 0 1px 0
+        rgba(255,255,255,.05),
+
+        0 12px 30px
+        rgba(0,0,0,.25);
+
+    backdrop-filter:
+        blur(9px);
+
+    -webkit-backdrop-filter:
+        blur(9px);
+
+    overflow: hidden;
+}
+
+.profile::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+
+    left: 20%;
+
+    right: 20%;
+
+    height: 1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(80,235,255,.7),
+            transparent
+        );
+}
+
+.photo {
+
+    width: 100px;
+
+    height: 100px;
+
+    margin: 0 auto 14px;
+
+    border-radius: 50%;
+
+    border:
+        2px solid rgba(100,230,255,.5);
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(0,190,255,.18),
+            rgba(2,20,35,.8)
+        );
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 0 22px
+        rgba(0,210,255,.18);
+}
+
+.photo img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    display: none;
+}
+
+.photo-placeholder {
+
+    font-size: 30px;
+
+    color:
+        rgba(140,235,255,.55);
+}
+
+.opponent-name {
+
+    font-size: 19px;
+
+    font-weight: 700;
+
+    letter-spacing: 1.8px;
+
+    text-shadow:
+        0 0 10px
+        rgba(0,220,255,.4);
+}
+
+.opponent-deck {
+
+    margin-top: 7px;
+
+    font-size: 7px;
+
+    letter-spacing: 2.5px;
+
+    color:
+        rgba(145,225,245,.62);
+}
+
+
+/* =========================================
+   STATISTICHE
+========================================= */
+
+.stats {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap: 8px;
+
+    margin-top: 10px;
+}
+
+.stat {
+
+    min-height: 85px;
+
+    border-radius: 15px;
+
+    border:
+        1px solid
+        rgba(135,235,255,.19);
+
+    background:
+        rgba(7,35,55,.55);
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+}
+
+.stat-title {
+
+    font-size: 6.5px;
+
+    letter-spacing: 1px;
+
+    color:
+        rgba(180,235,250,.6);
+
+    margin-bottom: 8px;
+}
+
+.stat-value {
+
+    font-size: 18px;
+
+    font-weight: 700;
+
+    text-shadow:
+        0 0 9px
+        rgba(0,220,255,.4);
+}
+
+
+/* =========================================
+   RECORD
+========================================= */
+
+.record {
+
+    margin-top: 10px;
+
+    padding: 16px;
+
+    border-radius: 16px;
+
+    border:
+        1px solid
+        rgba(135,235,255,.2);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(18,72,98,.4),
+            rgba(4,27,48,.58)
+        );
+
+    text-align: center;
+}
+
+.record-title {
+
+    font-size: 7px;
+
+    letter-spacing: 2px;
+
+    color:
+        rgba(180,235,250,.6);
+
+    margin-bottom: 9px;
+}
+
+.record-value {
+
+    font-size: 21px;
+
+    font-weight: 700;
+
+    letter-spacing: 3px;
+}
+
+
+/* =========================================
+   DECK NEURON
+========================================= */
+
+.neuron {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    margin-top: 10px;
+
+    padding: 15px 17px;
+
+    min-height: 78px;
+
+    border-radius: 17px;
+
+    border:
+        1px solid
+        rgba(135,235,255,.22);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(18,72,98,.44),
+            rgba(4,27,48,.6)
+        );
+
+    text-decoration: none;
+
+    color: white;
+
+    box-shadow:
+        0 10px 25px
+        rgba(0,0,0,.2);
+
+    transition:
+        transform .18s ease,
+        border-color .18s ease;
+
+    cursor: pointer;
+}
+
+.neuron:active {
+
+    transform: scale(.97);
+
+    border-color:
+        rgba(80,230,255,.45);
+}
+
+.neuron.disabled {
+
+    opacity: .45;
+
+    cursor: default;
+}
+
+.neuron-icon {
+
+    width: 40px;
+
+    height: 40px;
+
+    flex-shrink: 0;
+
+    color:
+        #8ceeff;
+}
+
+.neuron-icon svg {
+
+    width: 100%;
+
+    height: 100%;
+
+    fill: none;
+
+    stroke: currentColor;
+
+    stroke-width: 1.4;
+
+    stroke-linecap: round;
+
+    stroke-linejoin: round;
+}
+
+.neuron-info {
+
+    flex: 1;
+}
+
+.neuron-title {
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    letter-spacing: 1.4px;
+
+    margin-bottom: 5px;
+}
+
+.neuron-subtitle {
+
+    font-size: 6px;
+
+    letter-spacing: 1.2px;
+
+    color:
+        rgba(175,230,245,.55);
+}
+
+.neuron-arrow {
+
+    font-size: 22px;
+
+    color:
+        rgba(150,235,255,.55);
+}
+
+
+/* =========================================
+   STORICO
+========================================= */
+
+.history {
+
+    margin-top: 22px;
+}
+
+.history-title {
+
+    font-size: 8px;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 10px;
+}
+
+.duel {
+
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 13px;
+
+    margin-bottom: 8px;
+
+    border-radius: 15px;
+
+    border:
+        1px solid
+        rgba(135,235,255,.16);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(8,43,65,.52),
+            rgba(4,25,42,.62)
+        );
+
+    overflow: hidden;
+}
+
+.duel-number {
+
+    width: 34px;
+
+    height: 34px;
+
+    flex-shrink: 0;
+
+    border-radius: 10px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 8px;
+
+    font-weight: 700;
+
+    color:
+        rgba(145,235,255,.8);
+
+    border:
+        1px solid
+        rgba(100,225,255,.2);
+
+    background:
+        rgba(0,120,170,.12);
+}
+
+.duel-info {
+
+    flex: 1;
+
+    min-width: 0;
+}
+
+.duel-opponent {
+
+    font-size: 8px;
+
+    font-weight: 700;
+
+    letter-spacing: 1px;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+}
+
+.duel-details {
+
+    margin-top: 5px;
+
+    font-family: Arial,sans-serif;
+
+    font-size: 8px;
+
+    color:
+        rgba(170,220,235,.55);
+}
+
+.result {
+
+    flex-shrink: 0;
+
+    font-size: 6px;
+
+    font-weight: 700;
+
+    letter-spacing: .8px;
+
+    padding: 7px 8px;
+
+    border-radius: 8px;
+
+    text-align: center;
+}
+
+.result.win {
+
+    color: #71f5c0;
+
+    border:
+        1px solid
+        rgba(70,245,170,.25);
+
+    background:
+        rgba(30,160,100,.12);
+}
+
+.result.loss {
+
+    color: #ff8790;
+
+    border:
+        1px solid
+        rgba(255,80,100,.25);
+
+    background:
+        rgba(180,30,50,.12);
+}
+
+.result.draw {
+
+    color: #f3dc78;
+
+    border:
+        1px solid
+        rgba(245,215,80,.25);
+
+    background:
+        rgba(180,150,30,.12);
+}
+
+.result.pending {
+
+    color:
+        rgba(170,230,245,.65);
+
+    border:
+        1px solid
+        rgba(130,210,235,.18);
+
+    background:
+        rgba(50,100,120,.12);
+}
+
+
+/* =========================================
+   CARICAMENTO / ERRORE
+========================================= */
+
+.loading {
+
+    text-align: center;
+
+    padding: 50px 20px;
+
+    font-size: 8px;
+
+    letter-spacing: 2px;
+
+    color:
+        rgba(170,230,245,.55);
+}
+
+.error {
+
+    text-align: center;
+
+    padding: 30px 15px;
+
+    border-radius: 16px;
+
+    border:
+        1px solid
+        rgba(255,90,100,.25);
+
+    background:
+        rgba(100,20,30,.15);
+
+    font-size: 8px;
+
+    line-height: 1.8;
+
+    color:
+        rgba(255,170,175,.75);
+}
+
+
+/* =========================================
+   FOOTER
+========================================= */
+
+.footer {
+
+    text-align: center;
+
+    margin-top: 25px;
+
+    font-family: Arial,sans-serif;
+
+    font-size: 7px;
+
+    letter-spacing: 1.5px;
+
+    color:
+        rgba(160,220,235,.2);
+}
+
+
+@media (max-width:360px) {
+
+    .container {
+        padding: 14px 10px 25px;
+    }
+
+    .photo {
+        width: 88px;
+        height: 88px;
+    }
+
+    .opponent-name {
+        font-size: 16px;
+    }
+
+    .duel {
+        padding: 10px;
+    }
+
+    .duel-number {
+        width: 30px;
+        height: 30px;
+    }
+
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+
+        animation-duration:
+            .01ms !important;
+
+        animation-iteration-count:
+            1 !important;
+
+        transition-duration:
+            .01ms !important;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+<header class="header">
+
+    <div>
+
+        <div class="brand-main">
+            ALIS
+        </div>
+
+        <div class="brand-sub">
+            DUELIST SYSTEM
+        </div>
+
+    </div>
+
+
+    <a
+        href="index.html?id=d8434d0c-bfb6-4d87-9245-b1e9de2a253f"
+        class="back">
+
+        ‹
+
+    </a>
+
+</header>
+
+
+
+<div class="section-header">
+
+    <div class="section-line"></div>
+
+    <div class="section-title">
+        PROSSIMO DUELLO
+    </div>
+
+    <div class="section-line right"></div>
+
+</div>
+
+
+
+<div id="content">
+
+    <div class="loading">
+        ANALISI DATI DUELLANTE...
+    </div>
+
+</div>
+
+
+
+<div class="footer">
+    ALIS • DUELIST SYSTEM
+</div>
+
+
+</div>
+
+
+
+<script>
+
+/* =========================================
+   SUPABASE
+========================================= */
+
+const SUPABASE_URL =
+"https://swbrwezlygmtsuudwlfg.supabase.co";
+
+const SUPABASE_KEY =
+"sb_publishable_uV3FT9S9f6dajA4NRgofFA_cGOCvTNG";
+
+
+/* =========================================
+   ID GABRY
+========================================= */
+
+const GABRY_ID =
+"d8434d0c-bfb6-4d87-9245-b1e9de2a253f";
+
+
+/* =========================================
+   FETCH SUPABASE
+========================================= */
+
+async function supabaseFetch(path) {
+
+    const response = await fetch(
+
+        SUPABASE_URL + path,
+
+        {
+            headers: {
+
+                "apikey":
+                    SUPABASE_KEY,
+
+                "Authorization":
+                    "Bearer " +
+                    SUPABASE_KEY
+
+            }
+        }
+
+    );
+
+
+    if (!response.ok) {
+
+        const text =
+            await response.text();
+
+        throw new Error(
+            "Supabase " +
+            response.status +
+            ": " +
+            text
+        );
+
+    }
+
+
+    return await response.json();
+
+}
+
+
+/* =========================================
+   ESCAPE HTML
+========================================= */
+
+function escapeHTML(value) {
+
+    return String(value)
+
+        .replaceAll("&","&amp;")
+
+        .replaceAll("<","&lt;")
+
+        .replaceAll(">","&gt;")
+
+        .replaceAll('"',"&quot;")
+
+        .replaceAll("'","&#039;");
+
+}
+
+
+/* =========================================
+   LP VALIDO
+========================================= */
+
+function validLP(value) {
+
+    return (
+
+        value !== null &&
+
+        value !== undefined &&
+
+        value !== "" &&
+
+        !Number.isNaN(
+            Number(value)
+        )
+
+    );
+
+}
+
+
+/* =========================================
+   CARICA PAGINA
+========================================= */
+
+async function loadPage() {
+
+    const content =
+        document.getElementById(
+            "content"
+        );
+
+
+    try {
+
+
+        /* =================================
+           DUELLI DI GABRY
+        ================================= */
+
+        const duels =
+            await supabaseFetch(
+
+                "/rest/v1/duelli" +
+
+                "?select=*" +
+
+                "&or=(duellante_a.eq." +
+                GABRY_ID +
+                ",duellante_b.eq." +
+                GABRY_ID +
+                ")"
+
+            );
+
+
+        if (
+            !duels ||
+            duels.length === 0
+        ) {
+
+            throw new Error(
+                "Nessun duello trovato per Gabry."
+            );
+
+        }
+
+
+        /* =================================
+           ORDINA SUBITO I DUELLI
+           PER NUMERO REALE
+        ================================= */
+
+        duels.sort(
+            function(a,b) {
+
+                return (
+
+                    Number(
+                        a.numero_duello ??
+                        999999
+                    )
+
+                    -
+
+                    Number(
+                        b.numero_duello ??
+                        999999
+                    )
+
+                );
+
+            }
+        );
+
+
+        /* =================================
+           TROVA IL PROSSIMO DUELLO
+        ================================= */
+
+        let nextDuel = null;
+
+
+        for (
+            const duel of duels
+        ) {
+
+            const lpA =
+                duel.LP_a;
+
+            const lpB =
+                duel.LP_b;
+
+
+            if (
+                !validLP(lpA) ||
+                !validLP(lpB)
+            ) {
+
+                nextDuel =
+                    duel;
+
+                break;
+
+            }
+
+        }
+
+
+        if (!nextDuel) {
+
+            throw new Error(
+                "Nessun prossimo duello."
+            );
+
+        }
+
+
+        /* =================================
+           ID AVVERSARIO
+        ================================= */
+
+        let opponentId;
+
+
+        if (
+            nextDuel.duellante_a ===
+            GABRY_ID
+        ) {
+
+            opponentId =
+                nextDuel.duellante_b;
+
+        }
+
+        else {
+
+            opponentId =
+                nextDuel.duellante_a;
+
+        }
+
+
+        if (!opponentId) {
+
+            throw new Error(
+                "ID avversario mancante."
+            );
+
+        }
+
+
+        /* =================================
+           DUELLANTI
+        ================================= */
+
+        const duelists =
+            await supabaseFetch(
+
+                "/rest/v1/duellanti" +
+
+                "?select=id,nome,deck,punti,posizione,neuron_url,foto_url"
+
+            );
+
+
+        if (
+            !duelists ||
+            duelists.length === 0
+        ) {
+
+            throw new Error(
+                "Nessun duellante trovato."
+            );
+
+        }
+
+
+        const duelistMap = {};
+
+
+        duelists.forEach(
+            function(duelist) {
+
+                duelistMap[
+                    duelist.id
+                ] = duelist;
+
+            }
+        );
+
+
+        /* =================================
+           AVVERSARIO
+        ================================= */
+
+        const opponent =
+            duelistMap[opponentId];
+
+
+        if (!opponent) {
+
+            throw new Error(
+
+                "L'ID " +
+                opponentId +
+                " è presente nel duello ma non viene restituito dalla tabella duellanti."
+
+            );
+
+        }
+
+
+        const nome =
+            opponent.nome ||
+            "AVVERSARIO";
+
+
+        const deck =
+            opponent.deck ||
+            "DECK NON SPECIFICATO";
+
+
+        const punti =
+            opponent.punti ??
+            0;
+
+
+        const posizione =
+            opponent.posizione ??
+            "—";
+
+
+        const neuronURL =
+            opponent.neuron_url ||
+            "";
+
+
+        const fotoURL =
+            opponent.foto_url ||
+            "";
+
+
+        /* =================================
+           STORICO AVVERSARIO
+        ================================= */
+
+        const history =
+            await supabaseFetch(
+
+                "/rest/v1/duelli" +
+
+                "?select=*" +
+
+                "&or=(duellante_a.eq." +
+                opponentId +
+                ",duellante_b.eq." +
+                opponentId +
+                ")"
+
+            );
+
+
+        /* =================================
+           ORDINA PER NUMERO DUELLO
+        ================================= */
+
+        history.sort(
+            function(a,b) {
+
+                return (
+
+                    Number(
+                        a.numero_duello ??
+                        999999
+                    )
+
+                    -
+
+                    Number(
+                        b.numero_duello ??
+                        999999
+                    )
+
+                );
+
+            }
+        );
+
+
+        /* =================================
+           RECORD
+        ================================= */
+
+        let wins = 0;
+
+        let losses = 0;
+
+        let draws = 0;
+
+        let totalLP = 0;
+
+        let completedDuels = 0;
+
+
+        for (
+            const duel of history
+        ) {
+
+            const isA =
+                duel.duellante_a ===
+                opponentId;
+
+
+            const lpOpponent =
+                isA
+                    ? duel.LP_a
+                    : duel.LP_b;
+
+
+            const lpOther =
+                isA
+                    ? duel.LP_b
+                    : duel.LP_a;
+
+
+            if (
+                validLP(lpOpponent)
+            ) {
+
+                totalLP +=
+                    Number(lpOpponent) || 0;
+
+            }
+
+
+            if (
+                !validLP(lpOpponent) ||
+                !validLP(lpOther)
+            ) {
+
+                continue;
+
+            }
+
+
+            completedDuels++;
+
+
+            if (
+                Number(lpOpponent) >
+                Number(lpOther)
+            ) {
+
+                wins++;
+
+            }
+
+            else if (
+                Number(lpOpponent) <
+                Number(lpOther)
+            ) {
+
+                losses++;
+
+            }
+
+            else {
+
+                draws++;
+
+            }
+
+        }
+
+
+        /* =================================
+           FOTO
+        ================================= */
+
+        let photoHTML = "";
+
+
+        if (fotoURL) {
+
+            photoHTML = `
+
+                <img
+                    id="opponentPhoto"
+                    src="${escapeHTML(fotoURL)}"
+                    alt="${escapeHTML(nome)}"
+                    onload="showPhoto()"
+                    onerror="hidePhoto()">
+
+                <div
+                    id="photoPlaceholder"
+                    class="photo-placeholder"
+                    style="display:none">
+
+                    ?
+
+                </div>
+
+            `;
+
+        }
+
+        else {
+
+            photoHTML = `
+
+                <div
+                    class="photo-placeholder">
+
+                    ?
+
+                </div>
+
+            `;
+
+        }
+
+
+        /* =================================
+           STORICO HTML
+        ================================= */
+
+        let historyHTML = "";
+
+
+        if (
+            history.length === 0
+        ) {
+
+            historyHTML = `
+
+                <div class="duel">
+
+                    <div class="duel-info">
+
+                        <div class="duel-opponent">
+                            NESSUN DUELLO DISPUTATO
+                        </div>
+
+                    </div>
+
+                </div>
+
+            `;
+
+        }
+
+
+        history.forEach(
+            function(duel) {
+
+
+                const isA =
+                    duel.duellante_a ===
+                    opponentId;
+
+
+                const otherId =
+                    isA
+                        ? duel.duellante_b
+                        : duel.duellante_a;
+
+
+                const otherDuelist =
+                    duelistMap[otherId];
+
+
+                const otherName =
+                    otherDuelist?.nome ||
+                    "AVVERSARIO";
+
+
+                const lpOpponent =
+                    isA
+                        ? duel.LP_a
+                        : duel.LP_b;
+
+
+                const lpOther =
+                    isA
+                        ? duel.LP_b
+                        : duel.LP_a;
+
+
+                let result =
+                    "PROGRAMMATO";
+
+
+                let resultClass =
+                    "pending";
+
+
+                if (
+                    validLP(lpOpponent) &&
+                    validLP(lpOther)
+                ) {
+
+                    if (
+                        Number(lpOpponent) >
+                        Number(lpOther)
+                    ) {
+
+                        result =
+                            "VITTORIA";
+
+                        resultClass =
+                            "win";
+
+                    }
+
+                    else if (
+                        Number(lpOpponent) <
+                        Number(lpOther)
+                    ) {
+
+                        result =
+                            "SCONFITTA";
+
+                        resultClass =
+                            "loss";
+
+                    }
+
+                    else {
+
+                        result =
+                            "PAREGGIO";
+
+                        resultClass =
+                            "draw";
+
+                    }
+
+                }
+
+
+                const lpText =
+
+                    validLP(lpOpponent) &&
+                    validLP(lpOther)
+
+                    ?
+
+                    `LP ${escapeHTML(
+                        String(lpOpponent)
+                    )}
+                    •
+                    ${escapeHTML(
+                        String(lpOther)
+                    )}`
+
+                    :
+
+                    "DUELLO NON ANCORA DISPUTATO";
+
+
+                /* =========================
+                   NUMERO REALE
+                ========================= */
+
+                const numeroDuello =
+
+                    duel.numero_duello !== null &&
+                    duel.numero_duello !== undefined
+
+                    ?
+
+                    duel.numero_duello
+
+                    :
+
+                    "—";
+
+
+                historyHTML += `
+
+                    <div class="duel">
+
+
+                        <div class="duel-number">
+
+                            ${escapeHTML(
+                                String(
+                                    numeroDuello
+                                )
+                            )}
+
+                        </div>
+
+
+                        <div class="duel-info">
+
+                            <div class="duel-opponent">
+
+                                VS
+                                ${escapeHTML(
+                                    otherName
+                                )}
+
+                            </div>
+
+
+                            <div class="duel-details">
+
+                                ${lpText}
+
+                            </div>
+
+                        </div>
+
+
+                        <div
+                            class="result ${resultClass}">
+
+                            ${result}
+
+                        </div>
+
+
+                    </div>
+
+                `;
+
+            }
+        );
+
+
+        /* =================================
+           NEURON
+        ================================= */
+
+        let neuronHTML;
+
+
+        if (neuronURL) {
+
+            neuronHTML = `
+
+                <a
+                    class="neuron"
+                    href="${escapeHTML(neuronURL)}"
+                    target="_blank"
+                    rel="noopener noreferrer">
+
+
+                    <div class="neuron-icon">
+
+                        <svg viewBox="0 0 48 48">
+
+                            <rect
+                                x="12"
+                                y="8"
+                                width="25"
+                                height="32"
+                                rx="3">
+                            </rect>
+
+
+                            <rect
+                                x="8"
+                                y="12"
+                                width="25"
+                                height="32"
+                                rx="3"
+                                opacity=".45">
+                            </rect>
+
+
+                            <path d="M18 18h12">
+                            </path>
+
+
+                            <path d="M18 23h8">
+                            </path>
+
+
+                            <path d="M18 29h10">
+                            </path>
+
+                        </svg>
+
+                    </div>
+
+
+                    <div class="neuron-info">
+
+                        <div class="neuron-title">
+                            IL SUO DECK
+                        </div>
+
+
+                        <div class="neuron-subtitle">
+                            APRI IL DECK SU YU-GI-OH! NEURON
+                        </div>
+
+                    </div>
+
+
+                    <div class="neuron-arrow">
+                        ›
+                    </div>
+
+
+                </a>
+
+            `;
+
+        }
+
+        else {
+
+            neuronHTML = `
+
+                <div class="neuron disabled">
+
+
+                    <div class="neuron-icon">
+
+                        <svg viewBox="0 0 48 48">
+
+                            <rect
+                                x="12"
+                                y="8"
+                                width="25"
+                                height="32"
+                                rx="3">
+                            </rect>
+
+
+                            <rect
+                                x="8"
+                                y="12"
+                                width="25"
+                                height="32"
+                                rx="3"
+                                opacity=".45">
+                            </rect>
+
+
+                            <path d="M18 18h12">
+                            </path>
+
+
+                            <path d="M18 23h8">
+                            </path>
+
+
+                            <path d="M18 29h10">
+                            </path>
+
+                        </svg>
+
+                    </div>
+
+
+                    <div class="neuron-info">
+
+                        <div class="neuron-title">
+                            IL SUO DECK
+                        </div>
+
+
+                        <div class="neuron-subtitle">
+                            LINK NEURON NON DISPONIBILE
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            `;
+
+        }
+
+
+        /* =================================
+           RENDER
+        ================================= */
+
+        content.innerHTML = `
+
+
+            <div class="profile">
+
+
+                <div class="photo">
+
+                    ${photoHTML}
+
+                </div>
+
+
+                <div class="opponent-name">
+
+                    ${escapeHTML(nome)}
+
+                </div>
+
+
+                <div class="opponent-deck">
+
+                    ${escapeHTML(deck)}
+
+                </div>
+
+
+            </div>
+
+
+
+            <div class="stats">
+
+
+                <div class="stat">
+
+                    <div class="stat-title">
+                        POSIZIONE
+                    </div>
+
+                    <div class="stat-value">
+
+                        ${escapeHTML(
+                            String(posizione)
+                        )}
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="stat">
+
+                    <div class="stat-title">
+                        PUNTI
+                    </div>
+
+                    <div class="stat-value">
+
+                        ${escapeHTML(
+                            String(punti)
+                        )}
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="stat">
+
+                    <div class="stat-title">
+                        LP TOTALI
+                    </div>
+
+                    <div class="stat-value">
+
+                        ${totalLP}
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="stat">
+
+                    <div class="stat-title">
+                        DUELLI
+                    </div>
+
+                    <div class="stat-value">
+
+                        ${completedDuels}
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+
+            <div class="record">
+
+
+                <div class="record-title">
+                    RECORD
+                </div>
+
+
+                <div class="record-value">
+
+                    ${wins}
+                    -
+                    ${losses}
+                    -
+                    ${draws}
+
+                </div>
+
+
+            </div>
+
+
+
+            ${neuronHTML}
+
+
+
+            <div class="history">
+
+
+                <div class="history-title">
+
+                    STORICO DUELLI
+
+                </div>
+
+
+                ${historyHTML}
+
+
+            </div>
+
+        `;
+
+    }
+
+
+    catch(error) {
+
+        console.error(
+            "ERRORE:",
+            error
+        );
+
+
+        content.innerHTML = `
+
+            <div class="error">
+
+                ERRORE NEL CARICAMENTO
+                DEL PROSSIMO DUELLO
+
+                <br><br>
+
+                ${escapeHTML(
+                    error.message
+                )}
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+/* =========================================
+   FOTO
+========================================= */
+
+function showPhoto() {
+
+    const image =
+        document.getElementById(
+            "opponentPhoto"
+        );
+
+
+    if (!image) return;
+
+
+    image.style.display =
+        "block";
+
+
+    const placeholder =
+        document.getElementById(
+            "photoPlaceholder"
+        );
+
+
+    if (placeholder) {
+
+        placeholder.style.display =
+            "none";
+
+    }
+
+}
+
+
+function hidePhoto() {
+
+    const image =
+        document.getElementById(
+            "opponentPhoto"
+        );
+
+
+    if (image) {
+
+        image.style.display =
+            "none";
+
+    }
+
+
+    const placeholder =
+        document.getElementById(
+            "photoPlaceholder"
+        );
+
+
+    if (placeholder) {
+
+        placeholder.style.display =
+            "block";
+
+    }
+
+}
+
+
+/* =========================================
+   AVVIO
+========================================= */
+
+loadPage();
+
+</script>
+
+</body>
+
+</html>
+```
