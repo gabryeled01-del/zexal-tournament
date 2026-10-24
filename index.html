@@ -1,0 +1,4852 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"
+>
+
+<meta
+    http-equiv="Cache-Control"
+    content="no-cache,no-store,must-revalidate"
+>
+
+<meta
+    http-equiv="Pragma"
+    content="no-cache"
+>
+
+<meta
+    http-equiv="Expires"
+    content="0"
+>
+
+<title>ALIS Duelist System</title>
+
+<link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+>
+
+<link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+>
+
+
+<style>
+
+/* =========================================================
+   RESET
+========================================================= */
+
+*{
+    box-sizing:border-box;
+    -webkit-tap-highlight-color:transparent;
+}
+
+html,
+body{
+    margin:0;
+    width:100%;
+    min-height:100%;
+    color:#fff;
+}
+
+body{
+
+    font-family:
+        'Orbitron',
+        sans-serif;
+
+    overflow-x:hidden;
+
+    background:
+
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(0,213,255,.14),
+            transparent 32%
+        ),
+
+        radial-gradient(
+            circle at 10% 70%,
+            rgba(0,112,255,.08),
+            transparent 35%
+        ),
+
+        linear-gradient(
+            180deg,
+            #020914,
+            #041322 48%,
+            #020812
+        );
+}
+
+body.auth-active{
+    overflow:hidden;
+}
+
+
+/* =========================================================
+   SFONDO HOME
+========================================================= */
+
+body:before{
+
+    content:"";
+
+    position:fixed;
+
+    inset:-80px;
+
+    z-index:-3;
+
+    background-image:
+
+        linear-gradient(
+            rgba(0,220,255,.045) 1px,
+            transparent 1px
+        ),
+
+        linear-gradient(
+            90deg,
+            rgba(0,220,255,.045) 1px,
+            transparent 1px
+        );
+
+    background-size:
+        42px 42px;
+
+    transform:
+        perspective(600px)
+        rotateX(58deg)
+        scale(1.8)
+        translateY(80px);
+
+    transform-origin:
+        center bottom;
+
+    animation:
+        homeGrid
+        18s
+        linear
+        infinite;
+
+    pointer-events:none;
+}
+
+body:after{
+
+    content:"";
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:-2;
+
+    background:
+
+        radial-gradient(
+            circle,
+            transparent 35%,
+            rgba(0,0,0,.32)
+        );
+
+    pointer-events:none;
+}
+
+@keyframes homeGrid{
+
+    to{
+
+        background-position:
+            0 42px,
+            42px 0;
+
+    }
+
+}
+
+
+/* =========================================================
+   HOME
+========================================================= */
+
+#homeApp[hidden]{
+    display:none !important;
+}
+
+.home{
+
+    width:100%;
+
+    max-width:560px;
+
+    margin:auto;
+
+    padding:
+        18px
+        14px
+        26px;
+}
+
+.home-enter{
+
+    animation:
+        homeReveal
+        .65s
+        cubic-bezier(.2,.8,.2,1)
+        both;
+}
+
+@keyframes homeReveal{
+
+    from{
+
+        opacity:0;
+
+        transform:
+            scale(.985);
+
+        filter:
+            blur(5px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:
+            scale(1);
+
+        filter:
+            blur(0);
+
+    }
+
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.header{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:
+        space-between;
+
+    margin-bottom:
+        20px;
+}
+
+.brand{
+
+    display:flex;
+
+    flex-direction:
+        column;
+
+    gap:4px;
+}
+
+.brand-main{
+
+    font-size:
+        14px;
+
+    font-weight:
+        700;
+
+    letter-spacing:
+        2.2px;
+
+    text-shadow:
+        0 0 8px
+        rgba(0,220,255,.55);
+}
+
+.brand-sub{
+
+    font-size:
+        7px;
+
+    letter-spacing:
+        2.8px;
+
+    color:
+        rgba(175,235,255,.62);
+}
+
+.home-status{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:5px;
+
+    padding:
+        5px 8px;
+
+    border:
+        1px solid
+        rgba(0,225,255,.25);
+
+    border-radius:
+        20px;
+
+    background:
+        rgba(0,80,120,.18);
+
+    font:
+        8px Arial;
+
+    letter-spacing:
+        1px;
+
+    color:
+        rgba(180,245,255,.8);
+}
+
+.status-dot{
+
+    width:
+        5px;
+
+    height:
+        5px;
+
+    border-radius:
+        50%;
+
+    background:
+        #55f5ff;
+
+    box-shadow:
+        0 0 7px
+        #00eaff;
+
+    animation:
+        pulse
+        2s
+        ease-in-out
+        infinite;
+}
+
+@keyframes pulse{
+
+    50%{
+        opacity:.4;
+    }
+
+}
+
+
+/* =========================================================
+   TITOLI
+========================================================= */
+
+.section-header{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    margin-bottom:
+        9px;
+}
+
+.section-line{
+
+    flex:1;
+
+    height:
+        1px;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(0,220,255,.5)
+        );
+}
+
+.section-line.right{
+
+    background:
+
+        linear-gradient(
+            90deg,
+            rgba(0,220,255,.5),
+            transparent
+        );
+}
+
+.section-title{
+
+    font-size:
+        8px;
+
+    font-weight:
+        700;
+
+    letter-spacing:
+        2px;
+
+    color:
+        rgba(220,250,255,.92);
+
+    white-space:
+        nowrap;
+}
+
+
+/* =========================================================
+   CAROSELLO
+========================================================= */
+
+.carousel{
+
+    position:relative;
+
+    width:100%;
+
+    overflow:hidden;
+
+    border-radius:
+        18px;
+
+    border:
+        1px solid
+        rgba(125,235,255,.28);
+
+    background:
+        rgba(5,28,48,.45);
+
+    box-shadow:
+
+        0 12px 35px
+        rgba(0,0,0,.30),
+
+        0 0 25px
+        rgba(0,190,255,.08);
+}
+
+#banner{
+
+    display:block;
+
+    width:100%;
+
+    aspect-ratio:
+        1548 / 672;
+
+    object-fit:
+        cover;
+
+    border-radius:
+        18px;
+
+    transition:
+        opacity .28s,
+        transform .28s;
+}
+
+.carousel:after{
+
+    content:"";
+
+    position:absolute;
+
+    top:-100%;
+
+    left:-80%;
+
+    width:18%;
+
+    height:300%;
+
+    z-index:3;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.13),
+            transparent
+        );
+
+    transform:
+        rotate(20deg);
+
+    animation:
+        shine
+        8s
+        linear
+        infinite;
+
+    pointer-events:none;
+}
+
+@keyframes shine{
+
+    to{
+        left:170%;
+    }
+
+}
+
+
+/* =========================================================
+   FRECCE
+========================================================= */
+
+.arrow{
+
+    position:absolute;
+
+    top:50%;
+
+    transform:
+        translateY(-50%);
+
+    width:
+        31px;
+
+    height:
+        31px;
+
+    border-radius:
+        50%;
+
+    border:
+        1px solid
+        rgba(190,245,255,.45);
+
+    background:
+        rgba(2,24,42,.65);
+
+    color:#fff;
+
+    font:
+        21px Arial;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    z-index:10;
+
+    cursor:pointer;
+}
+
+.arrow:active{
+
+    transform:
+        translateY(-50%)
+        scale(.9);
+}
+
+.prev{
+    left:8px;
+}
+
+.next{
+    right:8px;
+}
+
+
+/* =========================================================
+   DOTS
+========================================================= */
+
+.dots{
+
+    position:absolute;
+
+    bottom:
+        8px;
+
+    left:
+        50%;
+
+    transform:
+        translateX(-50%);
+
+    display:flex;
+
+    gap:
+        6px;
+
+    z-index:
+        10;
+}
+
+.dot{
+
+    width:
+        5px;
+
+    height:
+        5px;
+
+    padding:0;
+
+    border:0;
+
+    border-radius:
+        50%;
+
+    background:
+        rgba(255,255,255,.38);
+
+    transition:
+        .25s;
+
+    cursor:pointer;
+}
+
+.dot.active{
+
+    width:
+        15px;
+
+    border-radius:
+        5px;
+
+    background:
+        #62efff;
+
+    box-shadow:
+        0 0 8px
+        rgba(0,225,255,.75);
+}
+
+
+/* =========================================================
+   DUELLANTE
+========================================================= */
+
+.duelist{
+
+    display:block;
+
+    text-align:center;
+
+    padding:
+        17px
+        5px
+        14px;
+
+    text-decoration:none;
+
+    color:white;
+
+    border-radius:
+        12px;
+
+    transition:
+        .18s;
+}
+
+.duelist:active{
+
+    transform:
+        scale(.97);
+}
+
+.duelist-name{
+
+    font-size:
+        16px;
+
+    font-weight:
+        700;
+
+    letter-spacing:
+        1.7px;
+
+    text-shadow:
+        0 0 10px
+        rgba(0,220,255,.42);
+}
+
+.duelist-deck{
+
+    margin-top:
+        6px;
+
+    font-size:
+        7px;
+
+    letter-spacing:
+        2.5px;
+
+    color:
+        rgba(130,225,245,.62);
+}
+
+
+/* =========================================================
+   CARD
+========================================================= */
+
+.cards{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:
+        8px;
+}
+
+.card{
+
+    min-width:
+        0;
+
+    min-height:
+        108px;
+
+    padding:
+        14px
+        7px
+        11px;
+
+    border-radius:
+        16px;
+
+    border:
+        1px solid
+        rgba(135,235,255,.2);
+
+    background:
+
+        linear-gradient(
+            145deg,
+            rgba(19,71,98,.42),
+            rgba(4,27,48,.55)
+        );
+
+    box-shadow:
+
+        inset 0 1px
+        rgba(255,255,255,.055),
+
+        0 10px 25px
+        rgba(0,0,0,.2);
+
+    display:flex;
+
+    flex-direction:
+        column;
+
+    align-items:center;
+
+    justify-content:center;
+
+    text-align:center;
+
+    text-decoration:none;
+
+    color:#fff;
+
+    transition:.18s;
+}
+
+.card:active{
+
+    transform:
+        scale(.96);
+}
+
+.icon{
+
+    width:
+        27px;
+
+    height:
+        27px;
+
+    margin-bottom:
+        10px;
+
+    color:
+        #8ceeff;
+}
+
+.icon svg,
+.deck-icon svg{
+
+    width:100%;
+
+    height:100%;
+
+    fill:none;
+
+    stroke:
+        currentColor;
+
+    stroke-width:
+        1.5;
+
+    stroke-linecap:
+        round;
+
+    stroke-linejoin:
+        round;
+}
+
+.title{
+
+    font-size:
+        6.5px;
+
+    letter-spacing:
+        .9px;
+
+    color:
+        rgba(185,235,250,.68);
+
+    margin-bottom:
+        6px;
+}
+
+.value{
+
+    max-width:
+        100%;
+
+    overflow:hidden;
+
+    text-overflow:
+        ellipsis;
+
+    white-space:
+        nowrap;
+
+    font-size:
+        17px;
+
+    font-weight:
+        700;
+}
+
+
+/* =========================================================
+   DECK + CALENDARIO
+========================================================= */
+
+.bottom-cards{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap:
+        8px;
+
+    margin-top:
+        10px;
+}
+
+.deck-card{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:
+        11px;
+
+    min-height:
+        84px;
+
+    padding:
+        13px;
+
+    border-radius:
+        17px;
+
+    border:
+        1px solid
+        rgba(135,235,255,.22);
+
+    background:
+
+        linear-gradient(
+            135deg,
+            rgba(18,72,98,.44),
+            rgba(4,27,48,.6)
+        );
+
+    text-decoration:none;
+
+    color:#fff;
+
+    transition:.18s;
+}
+
+.deck-card:active{
+
+    transform:
+        scale(.97);
+}
+
+.deck-icon{
+
+    width:
+        34px;
+
+    height:
+        34px;
+
+    flex-shrink:0;
+
+    color:
+        #8ceeff;
+}
+
+.deck-info{
+
+    min-width:0;
+
+    flex:1;
+}
+
+.deck-title{
+
+    font-size:
+        9px;
+
+    font-weight:
+        700;
+
+    letter-spacing:
+        1.3px;
+}
+
+.deck-subtitle{
+
+    margin-top:
+        5px;
+
+    font-size:
+        5px;
+
+    letter-spacing:
+        1px;
+
+    color:
+        rgba(155,225,240,.48);
+}
+
+.deck-arrow{
+
+    font:
+        24px Arial;
+
+    color:
+        rgba(150,235,250,.5);
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.logo-area{
+
+    text-align:center;
+
+    padding:
+        25px
+        0
+        8px;
+}
+
+.logo-placeholder{
+
+    font-size:
+        12px;
+
+    font-weight:
+        700;
+
+    letter-spacing:
+        3px;
+
+    color:
+        rgba(185,240,250,.33);
+}
+
+.logo-placeholder span{
+
+    display:block;
+
+    margin-top:
+        4px;
+
+    font-size:
+        5px;
+
+    letter-spacing:
+        2px;
+}
+
+.footer{
+
+    text-align:center;
+
+    margin-top:
+        8px;
+
+    font:
+        7px Arial;
+
+    letter-spacing:
+        1.5px;
+
+    color:
+        rgba(160,220,235,.2);
+}
+
+
+/* =========================================================
+   ACCESSO
+========================================================= */
+
+.auth-overlay{
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:9999;
+
+    overflow:hidden;
+
+    background:
+        #020508;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+}
+
+.auth-screen{
+
+    width:
+        100vw;
+
+    height:
+        100vh;
+
+    position:relative;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    overflow:hidden;
+
+    background:
+
+        radial-gradient(
+            circle at center,
+            #142633 0%,
+            #071017 38%,
+            #020508 75%
+        );
+}
+
+.auth-grid{
+
+    position:absolute;
+
+    inset:0;
+
+    opacity:
+        .13;
+
+    background-image:
+
+        linear-gradient(
+            rgba(90,220,255,.16) 1px,
+            transparent 1px
+        ),
+
+        linear-gradient(
+            90deg,
+            rgba(90,220,255,.16) 1px,
+            transparent 1px
+        );
+
+    background-size:
+        45px 45px;
+
+    animation:
+        authGrid
+        12s
+        linear
+        infinite;
+}
+
+@keyframes authGrid{
+
+    to{
+
+        background-position:
+            45px 45px,
+            45px 45px;
+
+    }
+
+}
+
+.scanline{
+
+    position:absolute;
+
+    left:0;
+
+    width:100%;
+
+    height:
+        2px;
+
+    background:
+        #6ee7ff;
+
+    box-shadow:
+        0 0 10px #6ee7ff,
+        0 0 25px #6ee7ff;
+
+    opacity:
+        .25;
+
+    animation:
+        scannerLine
+        5s
+        linear
+        infinite;
+}
+
+@keyframes scannerLine{
+
+    from{
+        top:-5px;
+    }
+
+    to{
+        top:100%;
+    }
+
+}
+
+.particles{
+
+    position:absolute;
+
+    inset:0;
+
+    overflow:hidden;
+}
+
+.particle{
+
+    position:absolute;
+
+    width:
+        2px;
+
+    height:
+        2px;
+
+    border-radius:
+        50%;
+
+    background:
+        #6ee7ff;
+
+    box-shadow:
+        0 0 7px
+        #6ee7ff;
+
+    animation:
+        particleFloat
+        linear
+        infinite;
+}
+
+@keyframes particleFloat{
+
+    from{
+
+        transform:
+            translateY(110vh);
+
+        opacity:0;
+
+    }
+
+    20%,
+    80%{
+        opacity:.4;
+    }
+
+    to{
+
+        transform:
+            translateY(-15vh);
+
+        opacity:0;
+
+    }
+
+}
+
+.auth-content{
+
+    position:relative;
+
+    z-index:5;
+
+    width:
+        90%;
+
+    max-width:
+        600px;
+
+    text-align:center;
+}
+
+.auth-logo{
+
+    font-size:
+        clamp(
+            32px,
+            9vw,
+            58px
+        );
+
+    font-weight:
+        700;
+
+    letter-spacing:
+        .35em;
+
+    margin-left:
+        .35em;
+
+    text-shadow:
+        0 0 10px #6ee7ff,
+        0 0 30px #6ee7ff;
+}
+
+.auth-subtitle{
+
+    margin-top:
+        12px;
+
+    font-size:
+        10px;
+
+    letter-spacing:
+        .32em;
+
+    opacity:
+        .5;
+}
+
+.qr-id{
+
+    margin-top:
+        18px;
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:
+        7px;
+
+    padding:
+        5px 9px;
+
+    border:
+        1px solid
+        rgba(110,231,255,.16);
+
+    border-radius:
+        999px;
+
+    font-size:
+        7px;
+
+    letter-spacing:
+        .18em;
+}
+
+.qr-dot{
+
+    width:
+        5px;
+
+    height:
+        5px;
+
+    border-radius:
+        50%;
+
+    background:
+        #6ee7ff;
+}
+
+
+/* =========================================================
+   IMPRONTA
+========================================================= */
+
+.fingerprint{
+
+    width:
+        200px;
+
+    height:
+        200px;
+
+    margin:
+        45px auto 30px;
+
+    position:relative;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border:
+        1px solid
+        rgba(110,231,255,.35);
+
+    border-radius:
+        50%;
+
+    cursor:pointer;
+}
+
+.fingerprint:before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:
+        16px;
+
+    border:
+        1px dashed
+        rgba(110,231,255,.15);
+
+    border-radius:
+        50%;
+}
+
+.fingerprint:after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:
+        34px;
+
+    border:
+        1px solid
+        rgba(110,231,255,.08);
+
+    border-radius:
+        50%;
+}
+
+.ring{
+
+    position:absolute;
+
+    inset:-8px;
+
+    border-radius:
+        50%;
+
+    border:
+        2px solid
+        transparent;
+
+    border-top-color:
+        #6ee7ff;
+
+    border-right-color:
+        rgba(110,231,255,.3);
+
+    opacity:0;
+}
+
+.scanning .ring{
+
+    opacity:1;
+
+    animation:
+        rotateRing
+        1s
+        linear
+        infinite;
+}
+
+@keyframes rotateRing{
+
+    to{
+        transform:rotate(360deg);
+    }
+
+}
+
+.fp{
+
+    width:
+        95px;
+
+    height:
+        115px;
+
+    position:relative;
+
+    z-index:4;
+}
+
+.fp span{
+
+    position:absolute;
+
+    border:
+        2px solid
+        #6ee7ff;
+
+    border-bottom-color:
+        transparent;
+
+    border-radius:
+        50%;
+}
+
+.fp span:nth-child(1){
+    inset:0 15px;
+}
+
+.fp span:nth-child(2){
+    inset:8px 7px 10px;
+}
+
+.fp span:nth-child(3){
+    inset:17px 0 20px;
+}
+
+.fp span:nth-child(4){
+    inset:28px 13px 30px;
+}
+
+.fp span:nth-child(5){
+    inset:42px 24px;
+}
+
+.fp span:nth-child(6){
+    inset:53px 35px 48px;
+}
+
+.fp span:nth-child(7){
+
+    width:
+        3px;
+
+    height:
+        18px;
+
+    left:
+        50%;
+
+    bottom:
+        12px;
+
+    transform:
+        translateX(-50%);
+
+    background:
+        #6ee7ff;
+
+    border:none;
+}
+
+.hint{
+
+    font-size:
+        11px;
+
+    letter-spacing:
+        .25em;
+
+    opacity:
+        .55;
+}
+
+.auth-status{
+
+    min-height:
+        14px;
+
+    margin-top:
+        20px;
+
+    font-size:
+        11px;
+
+    letter-spacing:
+        .25em;
+
+    opacity:
+        .6;
+}
+
+.success,
+.welcome{
+
+    display:none;
+}
+
+.check{
+
+    font-size:
+        60px;
+
+    color:
+        #70ffd0;
+
+    text-shadow:
+        0 0 15px
+        #70ffd0;
+}
+
+.access{
+
+    margin-top:
+        20px;
+
+    font-size:
+        clamp(
+            20px,
+            5vw,
+            32px
+        );
+
+    font-weight:
+        bold;
+
+    letter-spacing:
+        .25em;
+}
+
+.access-sub{
+
+    margin-top:
+        18px;
+
+    font-size:
+        8px;
+
+    letter-spacing:
+        .25em;
+}
+
+.welcomeSmall{
+
+    font-size:
+        11px;
+
+    letter-spacing:
+        .35em;
+}
+
+.playerName{
+
+    margin-top:
+        20px;
+
+    font-size:
+        clamp(
+            35px,
+            10vw,
+            65px
+        );
+
+    font-weight:
+        bold;
+
+    letter-spacing:
+        .12em;
+
+    text-shadow:
+        0 0 15px
+        #6ee7ff;
+}
+
+.destination{
+
+    margin-top:
+        30px;
+
+    font-size:
+        8px;
+
+    letter-spacing:
+        .28em;
+
+    opacity:0;
+}
+
+.destination.show{
+    opacity:1;
+}
+
+.fadeIn{
+
+    animation:
+        fadeIn
+        .8s
+        forwards;
+}
+
+.fadeOut{
+
+    animation:
+        fadeOut
+        .7s
+        forwards;
+}
+
+@keyframes fadeIn{
+
+    from{
+        opacity:0;
+    }
+
+    to{
+        opacity:1;
+    }
+
+}
+
+@keyframes fadeOut{
+
+    to{
+        opacity:0;
+    }
+
+}
+
+.hidden{
+
+    display:none !important;
+}
+
+.auth-screen.exit{
+
+    animation:
+        screenExit
+        1.15s
+        forwards;
+}
+
+@keyframes screenExit{
+
+    to{
+
+        opacity:0;
+
+        transform:
+            scale(1.05);
+
+    }
+
+}
+
+.final-flash{
+
+    position:absolute;
+
+    inset:0;
+
+    z-index:50;
+
+    pointer-events:none;
+
+    background:
+        rgba(115,235,255,.7);
+
+    opacity:0;
+}
+
+.final-flash.active{
+
+    animation:
+        finalFlash
+        .65s
+        ease-out
+        forwards;
+}
+
+@keyframes finalFlash{
+
+    18%{
+        opacity:.32;
+    }
+
+    100%{
+        opacity:0;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:420px){
+
+    .fingerprint{
+
+        width:
+            180px;
+
+        height:
+            180px;
+
+    }
+
+}
+
+@media(max-width:360px){
+
+    .home{
+
+        padding:
+            14px
+            10px
+            22px;
+
+    }
+
+    .card{
+
+        min-height:
+            101px;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body class="auth-active">
+
+
+<!-- =========================================================
+     ACCESSO
+========================================================= -->
+
+<div
+    id="authOverlay"
+    class="auth-overlay"
+>
+
+<div
+    id="authScreen"
+    class="auth-screen"
+>
+
+    <div class="auth-grid"></div>
+
+    <div class="scanline"></div>
+
+    <div
+        id="particles"
+        class="particles"
+    ></div>
+
+    <div
+        id="finalFlash"
+        class="final-flash"
+    ></div>
+
+
+    <div
+        id="login"
+        class="auth-content"
+    >
+
+        <div class="auth-logo">
+            ALIS
+        </div>
+
+        <div class="auth-subtitle">
+            DUELIST AUTHENTICATION SYSTEM
+        </div>
+
+        <div class="qr-id">
+
+            <span class="qr-dot"></span>
+
+            <span id="qrIdentity">
+                IDENTITÀ QR RILEVATA
+            </span>
+
+        </div>
+
+
+        <div
+            id="fingerprint"
+            class="fingerprint"
+            role="button"
+            tabindex="0"
+        >
+
+            <div class="ring"></div>
+
+            <div class="fp">
+
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+
+            </div>
+
+        </div>
+
+
+        <div
+            id="hint"
+            class="hint"
+        >
+            TOCCA PER AUTENTICARTI
+        </div>
+
+
+        <div
+            id="authStatus"
+            class="auth-status"
+        ></div>
+
+    </div>
+
+
+
+    <div
+        id="success"
+        class="auth-content success"
+    >
+
+        <div class="check">
+            ✓
+        </div>
+
+        <div class="access">
+            ACCESSO CONSENTITO
+        </div>
+
+        <div class="access-sub">
+            CONNESSIONE ALIS STABILITA
+        </div>
+
+    </div>
+
+
+
+    <div
+        id="welcome"
+        class="auth-content welcome"
+    >
+
+        <div class="welcomeSmall">
+            IDENTITÀ RICONOSCIUTA
+        </div>
+
+        <div
+            id="playerName"
+            class="playerName"
+        >
+            DUELLANTE
+        </div>
+
+        <div
+            id="destinationText"
+            class="destination"
+        >
+            APERTURA INTERFACCIA PERSONALE
+        </div>
+
+    </div>
+
+</div>
+
+</div>
+
+
+
+<!-- =========================================================
+     HOME
+========================================================= -->
+
+<div
+    id="homeApp"
+    class="home"
+    hidden
+>
+
+
+<header class="header">
+
+    <div class="brand">
+
+        <div class="brand-main">
+            ALIS
+        </div>
+
+        <div class="brand-sub">
+            DUELIST SYSTEM
+        </div>
+
+    </div>
+
+
+    <div class="home-status">
+
+        <div class="status-dot"></div>
+
+        ONLINE
+
+    </div>
+
+</header>
+
+
+
+<div class="section-header">
+
+    <div class="section-line"></div>
+
+    <div class="section-title">
+        PROSSIMI DUELLI
+    </div>
+
+    <div class="section-line right"></div>
+
+</div>
+
+
+
+<div class="carousel">
+
+    <img
+        id="banner"
+        src="banner.jpg"
+        alt="Prossimo duello"
+    >
+
+
+    <button
+        class="arrow prev"
+        type="button"
+        onclick="previousBanner()"
+    >
+        ‹
+    </button>
+
+
+    <button
+        class="arrow next"
+        type="button"
+        onclick="nextBanner()"
+    >
+        ›
+    </button>
+
+
+    <div
+        id="dots"
+        class="dots"
+    ></div>
+
+</div>
+
+
+
+<!-- =========================================================
+     PROFILO
+========================================================= -->
+
+<a
+    id="profileLink"
+    href="#"
+    class="duelist"
+>
+
+    <div
+        id="duelistName"
+        class="duelist-name"
+    >
+        DUELLANTE
+    </div>
+
+    <div
+        id="duelistDeck"
+        class="duelist-deck"
+    >
+        —
+    </div>
+
+</a>
+
+
+
+<!-- =========================================================
+     CARDS
+========================================================= -->
+
+<div class="cards">
+
+
+    <a
+        id="positionLink"
+        class="card"
+        href="classifica.html"
+    >
+
+        <div class="icon">
+
+            <svg viewBox="0 0 24 24">
+
+                <path d="
+                    M8 21h8
+                    M10 17h4
+                    M9 3h6
+                    M7 3h10v4a5 5 0 0 1-10 0V3z
+                    M7 6H4a3 3 0 0 0 3 3
+                    M17 6h3a3 3 0 0 1-3 3
+                "></path>
+
+            </svg>
+
+        </div>
+
+        <div class="title">
+            POSIZIONE
+        </div>
+
+        <div
+            id="positionValue"
+            class="value"
+        >
+            —
+        </div>
+
+    </a>
+
+
+
+    <a
+        id="pointsLink"
+        class="card"
+        href="punti.html"
+    >
+
+        <div class="icon">
+
+            <svg viewBox="0 0 24 24">
+
+                <path d="
+                    M12 2
+                    l2.7 6.1
+                    L21 9
+                    l-4.5 4.4
+                    1.1 6.3
+                    L12 16.7
+                    l-5.6 3
+                    1.1-6.3
+                    L3 9
+                    l6.3-.9z
+                "></path>
+
+            </svg>
+
+        </div>
+
+        <div class="title">
+            PUNTI
+        </div>
+
+        <div
+            id="pointsValue"
+            class="value"
+        >
+            —
+        </div>
+
+    </a>
+
+
+
+    <a
+        id="duelLink"
+        class="card"
+        href="duello.html"
+    >
+
+        <div class="icon">
+
+            <svg viewBox="0 0 24 24">
+
+                <path d="
+                    M5 3l6 6-3 3-6-6z
+                    M19 3l-6 6 3 3 6-6z
+                    M8 12l-4 8
+                    M16 12l4 8
+                "></path>
+
+            </svg>
+
+        </div>
+
+        <div class="title">
+            PROSSIMO
+        </div>
+
+        <div
+            id="nextOpponent"
+            class="value"
+        >
+            —
+        </div>
+
+    </a>
+
+
+</div>
+
+
+
+<!-- =========================================================
+     DECK / CALENDARIO
+========================================================= -->
+
+<div class="bottom-cards">
+
+
+    <a
+        id="deckLink"
+        href="deck.html"
+        class="deck-card"
+    >
+
+        <div class="deck-icon">
+
+            <svg viewBox="0 0 48 48">
+
+                <rect
+                    x="12"
+                    y="8"
+                    width="25"
+                    height="32"
+                    rx="3"
+                ></rect>
+
+                <rect
+                    x="8"
+                    y="12"
+                    width="25"
+                    height="32"
+                    rx="3"
+                    opacity=".45"
+                ></rect>
+
+            </svg>
+
+        </div>
+
+
+        <div class="deck-info">
+
+            <div class="deck-title">
+                DECK
+            </div>
+
+            <div class="deck-subtitle">
+                TUTTI I DECK
+            </div>
+
+        </div>
+
+
+        <div class="deck-arrow">
+            ›
+        </div>
+
+    </a>
+
+
+
+    <a
+        id="calendarLink"
+        href="calendario.html"
+        class="deck-card"
+    >
+
+        <div class="deck-icon">
+
+            <svg viewBox="0 0 48 48">
+
+                <rect
+                    x="7"
+                    y="10"
+                    width="34"
+                    height="31"
+                    rx="4"
+                ></rect>
+
+                <path d="
+                    M7 18h34
+                    M15 6v8
+                    M33 6v8
+                "></path>
+
+            </svg>
+
+        </div>
+
+
+        <div class="deck-info">
+
+            <div class="deck-title">
+                CALENDARIO
+            </div>
+
+            <div class="deck-subtitle">
+                DUELLI DEI GIRONI
+            </div>
+
+        </div>
+
+
+        <div class="deck-arrow">
+            ›
+        </div>
+
+    </a>
+
+
+</div>
+
+
+
+<div class="logo-area">
+
+    <div class="logo-placeholder">
+
+        ALIS
+
+        <span>
+            DUELIST SYSTEM
+        </span>
+
+    </div>
+
+</div>
+
+
+<div class="footer">
+    ALIS • DUELIST SYSTEM
+</div>
+
+
+</div>
+
+
+
+<script>
+
+/* =========================================================
+   SUPABASE
+========================================================= */
+
+const SUPABASE_URL =
+    "https://swbrwezlygmtsuudwlfg.supabase.co";
+
+const SUPABASE_KEY =
+    "sb_publishable_uV3FT9S9f6dajA4NRgofFA_cGOCvTNG";
+
+
+
+/* =========================================================
+   DUELLANTI
+========================================================= */
+
+const DUELISTS = {
+
+    GABRY:{
+
+        displayName:
+            "GABRY",
+
+        aliases:[
+            "GABRY",
+            "GABRIELE"
+        ],
+
+        audio:
+            "./bentornato-gabry.mp3",
+
+        deck:
+            "SQUALO"
+
+    },
+
+
+    ALE:{
+
+        displayName:
+            "ALE",
+
+        aliases:[
+            "ALE",
+            "ALESSANDRO"
+        ],
+
+        audio:
+            "./bentornato-ale.mp3"
+
+    },
+
+
+    CHRY:{
+
+        displayName:
+            "CHRY",
+
+        aliases:[
+            "CHRY",
+            "CHRISTIAN",
+            "CHRIS"
+        ],
+
+        audio:
+            "./bentornato-chry.mp3"
+
+    },
+
+
+    FRA:{
+
+        displayName:
+            "FRA",
+
+        aliases:[
+            "FRA",
+            "FRANCESCO"
+        ],
+
+        audio:
+            "./bentornato-fra.mp3"
+
+    },
+
+
+    ANDREA:{
+
+        displayName:
+            "ANDREA",
+
+        aliases:[
+            "ANDREA"
+        ],
+
+        audio:
+            "./bentornato-andrea.mp3"
+
+    },
+
+
+    MANU:{
+
+        displayName:
+            "MANU",
+
+        aliases:[
+            "MANU",
+            "MANUEL",
+            "MANUELE"
+        ],
+
+        audio:
+            "./bentornato-manu.mp3"
+
+    },
+
+
+    GIO:{
+
+        displayName:
+            "GIOVANNI",
+
+        aliases:[
+            "GIO",
+            "GIOVANNI"
+        ],
+
+        audio:
+            "./bentornato-gio.mp3"
+
+    }
+
+};
+
+
+
+/* =========================================================
+   ALIAS
+========================================================= */
+
+const NAME_TO_KEY = {};
+
+
+Object.entries(
+    DUELISTS
+).forEach(
+
+    function(entry){
+
+        const key =
+            entry[0];
+
+        const config =
+            entry[1];
+
+
+        config.aliases.forEach(
+
+            function(alias){
+
+                NAME_TO_KEY[
+                    alias
+                ] =
+                    key;
+
+            }
+
+        );
+
+    }
+
+);
+
+
+
+function normalizeName(value){
+
+    return String(
+        value || ""
+    )
+    .normalize("NFD")
+    .replace(
+        /[\u0300-\u036f]/g,
+        ""
+    )
+    .trim()
+    .toUpperCase();
+
+}
+
+
+
+function resolvePlayer(value){
+
+    const raw =
+        normalizeName(
+            value
+        );
+
+
+    const key =
+        NAME_TO_KEY[
+            raw
+        ] ||
+        raw;
+
+
+    const config =
+        DUELISTS[
+            key
+        ];
+
+
+    if(config){
+
+        return {
+
+            key:
+                key,
+
+            displayName:
+                config.displayName,
+
+            aliases:
+                config.aliases,
+
+            audio:
+                config.audio,
+
+            deck:
+                config.deck || null
+
+        };
+
+    }
+
+
+    return {
+
+        key:
+            raw ||
+            "DUELLANTE",
+
+        displayName:
+            raw ||
+            "DUELLANTE",
+
+        aliases:[
+            raw ||
+            "DUELLANTE"
+        ],
+
+        audio:
+            "./bentornato.mp3",
+
+        deck:
+            null
+
+    };
+
+}
+
+
+
+/* =========================================================
+   DUELLANTE ATTIVO
+========================================================= */
+
+const params =
+    new URLSearchParams(
+        window.location.search
+    );
+
+
+const requestedName =
+
+    params.get(
+        "nome"
+    )
+
+    ||
+
+    sessionStorage.getItem(
+        "ALIS_ACTIVE_PLAYER"
+    )
+
+    ||
+
+    "GABRY";
+
+
+const currentPlayer =
+    resolvePlayer(
+        requestedName
+    );
+
+
+sessionStorage.setItem(
+
+    "ALIS_ACTIVE_PLAYER",
+
+    currentPlayer.key
+
+);
+
+
+
+/* =========================================================
+   LINK INTERNI
+========================================================= */
+
+function playerUrl(page){
+
+    return (
+
+        page +
+
+        "?nome=" +
+
+        encodeURIComponent(
+            currentPlayer.key
+        )
+
+    );
+
+}
+
+
+document.getElementById(
+    "positionLink"
+).href =
+    playerUrl(
+        "classifica.html"
+    );
+
+
+document.getElementById(
+    "pointsLink"
+).href =
+    playerUrl(
+        "punti.html"
+    );
+
+
+document.getElementById(
+    "duelLink"
+).href =
+    playerUrl(
+        "duello.html"
+    );
+
+
+document.getElementById(
+    "deckLink"
+).href =
+    playerUrl(
+        "deck.html"
+    );
+
+
+document.getElementById(
+    "calendarLink"
+).href =
+    playerUrl(
+        "calendario.html"
+    );
+
+
+
+/* =========================================================
+   PROFILO
+========================================================= */
+
+const profileLink =
+    document.getElementById(
+        "profileLink"
+    );
+
+
+if(
+    currentPlayer.key ===
+    "ALE"
+){
+
+    profileLink.href =
+        "profilo-ale.html?nome=ALE";
+
+}
+
+else{
+
+    profileLink.href =
+        "#";
+
+}
+
+
+
+/* =========================================================
+   FETCH SUPABASE
+========================================================= */
+
+async function supabaseFetch(path){
+
+    const response =
+        await fetch(
+
+            SUPABASE_URL +
+            path,
+
+            {
+
+                headers:{
+
+                    "apikey":
+                        SUPABASE_KEY,
+
+                    "Authorization":
+                        "Bearer " +
+                        SUPABASE_KEY,
+
+                    "Content-Type":
+                        "application/json"
+
+                },
+
+                cache:
+                    "no-store"
+
+            }
+
+        );
+
+
+    if(
+        !response.ok
+    ){
+
+        throw new Error(
+            await response.text()
+        );
+
+    }
+
+
+    return response.json();
+
+}
+
+
+
+/* =========================================================
+   CERCA DUELLANTE
+========================================================= */
+
+async function findPlayerInSupabase(){
+
+    for(
+        const alias
+        of currentPlayer.aliases
+    ){
+
+        const data =
+            await supabaseFetch(
+
+                "/rest/v1/duellanti" +
+
+                "?select=*" +
+
+                "&nome=ilike." +
+
+                encodeURIComponent(
+                    alias
+                ) +
+
+                "&limit=1"
+
+            );
+
+
+        if(
+            data &&
+            data.length
+        ){
+
+            return data[0];
+
+        }
+
+    }
+
+
+    return null;
+
+}
+
+
+
+/* =========================================================
+   DATI HOME
+========================================================= */
+
+async function loadHomeData(){
+
+    try{
+
+        const player =
+            await findPlayerInSupabase();
+
+
+
+        /* =================================================
+           PROFILO CORRETTO
+        ================================================= */
+
+        if(
+            currentPlayer.key ===
+            "ALE"
+        ){
+
+            profileLink.href =
+                "profilo-ale.html?nome=ALE";
+
+        }
+
+        else if(
+            player &&
+            player.id
+        ){
+
+            profileLink.href =
+
+                "profilo.html?id=" +
+
+                encodeURIComponent(
+                    player.id
+                ) +
+
+                "&nome=" +
+
+                encodeURIComponent(
+                    currentPlayer.key
+                );
+
+        }
+
+        else{
+
+            profileLink.href =
+                "#";
+
+        }
+
+
+
+        /* =================================================
+           NOME
+        ================================================= */
+
+        document.getElementById(
+            "duelistName"
+        ).textContent =
+
+            (
+                player?.nome ||
+                currentPlayer.displayName
+            )
+            .toUpperCase();
+
+
+
+        /* =================================================
+           DECK
+        ================================================= */
+
+        const deckName =
+
+            player?.deck ||
+
+            player?.deck_nome ||
+
+            player?.nome_deck ||
+
+            player?.archetipo ||
+
+            currentPlayer.deck ||
+
+            "—";
+
+
+        document.getElementById(
+            "duelistDeck"
+        ).textContent =
+
+            String(
+                deckName
+            )
+            .toUpperCase();
+
+
+
+        if(
+            !player
+        ){
+
+            return;
+
+        }
+
+
+
+        /* =================================================
+           POSIZIONE
+        ================================================= */
+
+        document.getElementById(
+            "positionValue"
+        ).textContent =
+
+            player.posizione != null
+
+                ? player.posizione +
+                  "°"
+
+                : "—";
+
+
+
+        /* =================================================
+           PUNTI
+        ================================================= */
+
+        document.getElementById(
+            "pointsValue"
+        ).textContent =
+
+            player.punti ??
+            0;
+
+
+
+        if(
+            !player.id
+        ){
+
+            return;
+
+        }
+
+
+
+        /* =================================================
+           DUELLI
+        ================================================= */
+
+        const duels =
+            await supabaseFetch(
+
+                "/rest/v1/duelli" +
+
+                "?select=*" +
+
+                "&or=(" +
+
+                "duellante_a.eq." +
+
+                encodeURIComponent(
+                    player.id
+                ) +
+
+                "," +
+
+                "duellante_b.eq." +
+
+                encodeURIComponent(
+                    player.id
+                ) +
+
+                ")"
+
+            );
+
+
+
+        const ordered =
+
+            [
+                ...(
+                    duels ||
+                    []
+                )
+            ]
+
+            .sort(
+
+                function(a,b){
+
+                    return (
+
+                        Number(
+                            a.id ||
+                            0
+                        )
+
+                        -
+
+                        Number(
+                            b.id ||
+                            0
+                        )
+
+                    );
+
+                }
+
+            );
+
+
+
+        /* =================================================
+           PROSSIMO DUELLO
+        ================================================= */
+
+        const upcoming =
+            ordered.find(
+
+                function(duel){
+
+                    return (
+
+                        duel["LP_a"] == null
+
+                        ||
+
+                        duel["LP_b"] == null
+
+                    );
+
+                }
+
+            );
+
+
+
+        if(
+            !upcoming
+        ){
+
+            document.getElementById(
+                "nextOpponent"
+            ).textContent =
+                "—";
+
+            return;
+
+        }
+
+
+
+        const opponentId =
+
+            upcoming.duellante_a ===
+            player.id
+
+                ? upcoming.duellante_b
+
+                : upcoming.duellante_a;
+
+
+
+        if(
+            !opponentId
+        ){
+
+            document.getElementById(
+                "nextOpponent"
+            ).textContent =
+                "—";
+
+            return;
+
+        }
+
+
+
+        const opponent =
+            await supabaseFetch(
+
+                "/rest/v1/duellanti" +
+
+                "?select=nome" +
+
+                "&id=eq." +
+
+                encodeURIComponent(
+                    opponentId
+                ) +
+
+                "&limit=1"
+
+            );
+
+
+
+        document.getElementById(
+            "nextOpponent"
+        ).textContent =
+
+            opponent?.[0]?.nome ||
+
+            "—";
+
+
+    }
+
+    catch(error){
+
+        console.error(
+
+            "Errore caricamento Home:",
+
+            error
+
+        );
+
+    }
+
+}
+
+
+
+/* =========================================================
+   CAROSELLO
+========================================================= */
+
+const banners = [
+
+    "banner.jpg",
+
+    "banner-02.jpg",
+
+    "banner-03.jpg"
+
+];
+
+
+let currentBanner =
+    0;
+
+
+const bannerImage =
+    document.getElementById(
+        "banner"
+    );
+
+
+const dots =
+    document.getElementById(
+        "dots"
+    );
+
+
+
+function createDots(){
+
+    dots.innerHTML =
+        "";
+
+
+    banners.forEach(
+
+        function(_,index){
+
+            const button =
+                document.createElement(
+                    "button"
+                );
+
+
+            button.type =
+                "button";
+
+
+            button.className =
+
+                "dot" +
+
+                (
+                    index ===
+                    currentBanner
+
+                        ? " active"
+
+                        : ""
+                );
+
+
+            button.onclick =
+                function(){
+
+                    currentBanner =
+                        index;
+
+                    showBanner();
+
+                };
+
+
+            dots.appendChild(
+                button
+            );
+
+        }
+
+    );
+
+}
+
+
+
+function showBanner(){
+
+    bannerImage.style.opacity =
+        "0";
+
+
+    bannerImage.style.transform =
+        "scale(.985)";
+
+
+    setTimeout(
+
+        function(){
+
+            bannerImage.src =
+                banners[
+                    currentBanner
+                ];
+
+
+            bannerImage.onload =
+                function(){
+
+                    bannerImage.style.opacity =
+                        "1";
+
+
+                    bannerImage.style.transform =
+                        "scale(1)";
+
+                };
+
+
+            createDots();
+
+        },
+
+        140
+
+    );
+
+}
+
+
+
+function previousBanner(){
+
+    currentBanner =
+
+        (
+            currentBanner -
+            1 +
+            banners.length
+        )
+
+        %
+
+        banners.length;
+
+
+    showBanner();
+
+}
+
+
+
+function nextBanner(){
+
+    currentBanner =
+
+        (
+            currentBanner +
+            1
+        )
+
+        %
+
+        banners.length;
+
+
+    showBanner();
+
+}
+
+
+window.previousBanner =
+    previousBanner;
+
+
+window.nextBanner =
+    nextBanner;
+
+
+
+/* =========================================================
+   SWIPE
+========================================================= */
+
+let touchStartX =
+    0;
+
+
+bannerImage.addEventListener(
+
+    "touchstart",
+
+    function(event){
+
+        touchStartX =
+
+            event
+            .changedTouches[0]
+            .screenX;
+
+    },
+
+    {
+        passive:true
+    }
+
+);
+
+
+bannerImage.addEventListener(
+
+    "touchend",
+
+    function(event){
+
+        const difference =
+
+            touchStartX -
+
+            event
+            .changedTouches[0]
+            .screenX;
+
+
+        if(
+            Math.abs(
+                difference
+            ) >
+            45
+        ){
+
+            if(
+                difference >
+                0
+            ){
+
+                nextBanner();
+
+            }
+
+            else{
+
+                previousBanner();
+
+            }
+
+        }
+
+    },
+
+    {
+        passive:true
+    }
+
+);
+
+
+
+/* =========================================================
+   PARTICELLE
+========================================================= */
+
+const particles =
+    document.getElementById(
+        "particles"
+    );
+
+
+for(
+    let i = 0;
+    i < 28;
+    i++
+){
+
+    const particle =
+        document.createElement(
+            "span"
+        );
+
+
+    particle.className =
+        "particle";
+
+
+    particle.style.left =
+
+        Math.random() *
+        100 +
+        "%";
+
+
+    particle.style.animationDuration =
+
+        (
+            6 +
+            Math.random() *
+            9
+        ) +
+        "s";
+
+
+    particle.style.animationDelay =
+
+        (
+            -Math.random() *
+            12
+        ) +
+        "s";
+
+
+    particles.appendChild(
+        particle
+    );
+
+}
+
+
+
+/* =========================================================
+   ELEMENTI ACCESSO
+========================================================= */
+
+const authScreen =
+    document.getElementById(
+        "authScreen"
+    );
+
+
+const authOverlay =
+    document.getElementById(
+        "authOverlay"
+    );
+
+
+const fingerprint =
+    document.getElementById(
+        "fingerprint"
+    );
+
+
+const login =
+    document.getElementById(
+        "login"
+    );
+
+
+const success =
+    document.getElementById(
+        "success"
+    );
+
+
+const welcome =
+    document.getElementById(
+        "welcome"
+    );
+
+
+const hint =
+    document.getElementById(
+        "hint"
+    );
+
+
+const authStatus =
+    document.getElementById(
+        "authStatus"
+    );
+
+
+const finalFlash =
+    document.getElementById(
+        "finalFlash"
+    );
+
+
+const destinationText =
+    document.getElementById(
+        "destinationText"
+    );
+
+
+const homeApp =
+    document.getElementById(
+        "homeApp"
+    );
+
+
+
+document.getElementById(
+    "playerName"
+).textContent =
+    currentPlayer.displayName;
+
+
+document.getElementById(
+    "qrIdentity"
+).textContent =
+
+    "QR ID • " +
+
+    currentPlayer.displayName;
+
+
+
+/* =========================================================
+   AUDIO MP3
+========================================================= */
+
+const scansione =
+    new Audio(
+        "./scansione.mp3"
+    );
+
+
+const accesso =
+    new Audio(
+        "./accesso.mp3"
+    );
+
+
+const background =
+    new Audio(
+        "./tech-background.mp3"
+    );
+
+
+const bentornato =
+    new Audio(
+        currentPlayer.audio
+    );
+
+
+const bentornatoFallback =
+    new Audio(
+        "./bentornato.mp3"
+    );
+
+
+background.loop =
+    true;
+
+
+background.volume =
+    .12;
+
+
+scansione.volume =
+    1;
+
+
+accesso.volume =
+    1;
+
+
+bentornato.volume =
+    1;
+
+
+bentornatoFallback.volume =
+    1;
+
+
+
+/* =========================================================
+   AUDIO CONTEXT AUTENTICAZIONE
+========================================================= */
+
+let audioContext =
+    null;
+
+
+function startAudioSystem(){
+
+    if(
+        !audioContext
+    ){
+
+        const AudioContextClass =
+
+            window.AudioContext
+
+            ||
+
+            window.webkitAudioContext;
+
+
+        if(
+            AudioContextClass
+        ){
+
+            audioContext =
+                new AudioContextClass();
+
+        }
+
+    }
+
+
+    if(
+
+        audioContext
+
+        &&
+
+        audioContext.state ===
+        "suspended"
+
+    ){
+
+        audioContext
+        .resume()
+        .catch(
+            function(){}
+        );
+
+    }
+
+}
+
+
+
+/* =========================================================
+   BEEP AUTENTICAZIONE
+========================================================= */
+
+function beep(
+
+    frequency = 800,
+
+    duration = .08,
+
+    volume = .06,
+
+    type = "sine"
+
+){
+
+    if(
+        !audioContext
+    ){
+
+        return;
+
+    }
+
+
+    const oscillator =
+        audioContext
+        .createOscillator();
+
+
+    const gain =
+        audioContext
+        .createGain();
+
+
+    oscillator.type =
+        type;
+
+
+    oscillator.frequency.value =
+        frequency;
+
+
+    gain.gain.setValueAtTime(
+
+        .001,
+
+        audioContext.currentTime
+
+    );
+
+
+    gain.gain.linearRampToValueAtTime(
+
+        volume,
+
+        audioContext.currentTime +
+        .01
+
+    );
+
+
+    gain.gain.exponentialRampToValueAtTime(
+
+        .001,
+
+        audioContext.currentTime +
+        duration
+
+    );
+
+
+    oscillator.connect(
+        gain
+    );
+
+
+    gain.connect(
+        audioContext.destination
+    );
+
+
+    oscillator.start();
+
+
+    oscillator.stop(
+
+        audioContext.currentTime +
+
+        duration +
+
+        .02
+
+    );
+
+}
+
+
+
+/* =========================================================
+   SUONO SCANSIONE
+========================================================= */
+
+function scanningSound(){
+
+    beep(
+        550,
+        .12,
+        .05
+    );
+
+
+    setTimeout(
+
+        function(){
+
+            beep(
+                750,
+                .10,
+                .045
+            );
+
+        },
+
+        180
+
+    );
+
+
+    setTimeout(
+
+        function(){
+
+            beep(
+                950,
+                .08,
+                .04
+            );
+
+        },
+
+        360
+
+    );
+
+}
+
+
+
+/* =========================================================
+   SUONO TRANSIZIONE HOME
+========================================================= */
+
+function transitionSound(){
+
+    beep(
+        650,
+        .10,
+        .03
+    );
+
+
+    setTimeout(
+
+        function(){
+
+            beep(
+                900,
+                .10,
+                .035
+            );
+
+        },
+
+        80
+
+    );
+
+
+    setTimeout(
+
+        function(){
+
+            beep(
+                1250,
+                .12,
+                .04
+            );
+
+        },
+
+        160
+
+    );
+
+
+    setTimeout(
+
+        function(){
+
+            beep(
+                1700,
+                .18,
+                .045
+            );
+
+        },
+
+        240
+
+    );
+
+}
+
+
+
+/* =========================================================
+   SUONO PULSANTI HOME
+========================================================= */
+
+let homeAudioContext =
+    null;
+
+
+function getHomeAudioContext(){
+
+    if(
+        !homeAudioContext
+    ){
+
+        const AudioContextClass =
+
+            window.AudioContext
+
+            ||
+
+            window.webkitAudioContext;
+
+
+        if(
+            !AudioContextClass
+        ){
+
+            return null;
+
+        }
+
+
+        homeAudioContext =
+            new AudioContextClass();
+
+    }
+
+
+    if(
+        homeAudioContext.state ===
+        "suspended"
+    ){
+
+        homeAudioContext
+        .resume()
+        .catch(
+            function(){}
+        );
+
+    }
+
+
+    return homeAudioContext;
+
+}
+
+
+
+/* =========================================================
+   GENERATORE BEEP HOME
+========================================================= */
+
+function homeBeep(
+
+    frequency,
+
+    delay,
+
+    duration,
+
+    volume,
+
+    type,
+
+    endFrequency
+
+){
+
+    const ctx =
+        getHomeAudioContext();
+
+
+    if(
+        !ctx
+    ){
+
+        return;
+
+    }
+
+
+    const now =
+        ctx.currentTime;
+
+
+    const oscillator =
+        ctx.createOscillator();
+
+
+    const gain =
+        ctx.createGain();
+
+
+    oscillator.type =
+        type;
+
+
+    oscillator.frequency
+    .setValueAtTime(
+
+        frequency,
+
+        now +
+        delay
+
+    );
+
+
+    if(
+        endFrequency
+    ){
+
+        oscillator.frequency
+        .exponentialRampToValueAtTime(
+
+            endFrequency,
+
+            now +
+            delay +
+            duration
+
+        );
+
+    }
+
+
+    gain.gain
+    .setValueAtTime(
+
+        .0001,
+
+        now +
+        delay
+
+    );
+
+
+    gain.gain
+    .exponentialRampToValueAtTime(
+
+        volume,
+
+        now +
+        delay +
+        .008
+
+    );
+
+
+    gain.gain
+    .exponentialRampToValueAtTime(
+
+        .0001,
+
+        now +
+        delay +
+        duration
+
+    );
+
+
+    oscillator
+    .connect(gain)
+    .connect(
+        ctx.destination
+    );
+
+
+    oscillator.start(
+
+        now +
+        delay
+
+    );
+
+
+    oscillator.stop(
+
+        now +
+        delay +
+        duration +
+        .03
+
+    );
+
+}
+
+
+
+/* =========================================================
+   SUONO SELEZIONE ALIS
+========================================================= */
+
+function playSelectionSound(){
+
+    homeBeep(
+
+        980,
+        0,
+        .045,
+        .035,
+        "square",
+        1380
+
+    );
+
+
+    homeBeep(
+
+        1650,
+        .032,
+        .06,
+        .022,
+        "sine",
+        2050
+
+    );
+
+}
+
+
+
+/* =========================================================
+   ATTIVA SUONO SU TUTTI I PULSANTI HOME
+========================================================= */
+
+document.addEventListener(
+
+    "pointerdown",
+
+    function(event){
+
+        /*
+        Il suono dei pulsanti deve partire
+        solamente quando siamo dentro la Home.
+
+        Durante l'autenticazione l'impronta
+        mantiene i suoi suoni originali.
+        */
+
+        if(
+            !homeApp ||
+            homeApp.hidden
+        ){
+
+            return;
+
+        }
+
+
+        const target =
+            event.target.closest(
+
+                "a," +
+                "button," +
+                ".card," +
+                ".deck-card," +
+                ".duelist," +
+                ".dot," +
+                ".arrow"
+
+            );
+
+
+        if(
+            target
+        ){
+
+            playSelectionSound();
+
+        }
+
+    },
+
+    {
+        passive:true
+    }
+
+);
+
+
+
+/* =========================================================
+   TIMER
+========================================================= */
+
+function wait(ms){
+
+    return new Promise(
+
+        function(resolve){
+
+            setTimeout(
+                resolve,
+                ms
+            );
+
+        }
+
+    );
+
+}
+
+
+
+/* =========================================================
+   AUDIO + ATTESA
+========================================================= */
+
+function playAndWait(
+
+    audio,
+
+    maxWait = 5000
+
+){
+
+    return new Promise(
+
+        function(resolve){
+
+            let finished =
+                false;
+
+
+            function done(){
+
+                if(
+                    finished
+                ){
+
+                    return;
+
+                }
+
+
+                finished =
+                    true;
+
+
+                resolve();
+
+            }
+
+
+            audio.currentTime =
+                0;
+
+
+            audio.addEventListener(
+
+                "ended",
+
+                done,
+
+                {
+                    once:true
+                }
+
+            );
+
+
+            audio.addEventListener(
+
+                "error",
+
+                done,
+
+                {
+                    once:true
+                }
+
+            );
+
+
+            audio
+            .play()
+            .catch(
+                done
+            );
+
+
+            setTimeout(
+
+                done,
+
+                maxWait
+
+            );
+
+        }
+
+    );
+
+}
+
+
+
+/* =========================================================
+   BENTORNATO PERSONALE + FALLBACK
+========================================================= */
+
+async function playWelcome(){
+
+    let started =
+        true;
+
+
+    try{
+
+        bentornato.currentTime =
+            0;
+
+
+        await bentornato.play();
+
+    }
+
+    catch(error){
+
+        started =
+            false;
+
+    }
+
+
+    if(
+        started
+    ){
+
+        await new Promise(
+
+            function(resolve){
+
+                let completed =
+                    false;
+
+
+                function done(){
+
+                    if(
+                        completed
+                    ){
+
+                        return;
+
+                    }
+
+
+                    completed =
+                        true;
+
+
+                    resolve();
+
+                }
+
+
+                bentornato.addEventListener(
+
+                    "ended",
+
+                    done,
+
+                    {
+                        once:true
+                    }
+
+                );
+
+
+                bentornato.addEventListener(
+
+                    "error",
+
+                    done,
+
+                    {
+                        once:true
+                    }
+
+                );
+
+
+                setTimeout(
+
+                    done,
+
+                    5000
+
+                );
+
+            }
+
+        );
+
+    }
+
+    else{
+
+        await playAndWait(
+
+            bentornatoFallback,
+
+            5000
+
+        );
+
+    }
+
+}
+
+
+
+/* =========================================================
+   MOSTRA HOME
+========================================================= */
+
+function showHome(
+    skipAnimation = false
+){
+
+    authOverlay.style.display =
+        "none";
+
+
+    document.body.classList.remove(
+        "auth-active"
+    );
+
+
+    homeApp.hidden =
+        false;
+
+
+    if(
+        !skipAnimation
+    ){
+
+        homeApp.classList.add(
+            "home-enter"
+        );
+
+    }
+
+
+    window.scrollTo(
+        0,
+        0
+    );
+
+
+    createDots();
+
+
+    loadHomeData();
+
+}
+
+
+
+/* =========================================================
+   AUTENTICAZIONE
+========================================================= */
+
+let authenticationRunning =
+    false;
+
+
+async function authenticate(){
+
+    if(
+        authenticationRunning
+    ){
+
+        return;
+
+    }
+
+
+    authenticationRunning =
+        true;
+
+
+
+    /* =====================================================
+       ATTIVA AUDIO
+    ===================================================== */
+
+    startAudioSystem();
+
+
+
+    /* =====================================================
+       SOTTOFONDO
+    ===================================================== */
+
+    background.currentTime =
+        0;
+
+
+    background
+    .play()
+    .catch(
+        function(){}
+    );
+
+
+
+    /* =====================================================
+       SCANSIONE
+    ===================================================== */
+
+    authScreen.classList.add(
+        "scanning"
+    );
+
+
+    hint.textContent =
+        "SCANSIONE IN CORSO";
+
+
+    authStatus.textContent =
+        "ANALISI IDENTITÀ...";
+
+
+    scanningSound();
+
+
+    scansione.currentTime =
+        0;
+
+
+    scansione
+    .play()
+    .catch(
+        function(){}
+    );
+
+
+    await wait(
+        1250
+    );
+
+
+
+    /* =====================================================
+       IDENTITÀ CONFERMATA
+    ===================================================== */
+
+    authStatus.textContent =
+        "IDENTITÀ CONFERMATA";
+
+
+    beep(
+        1200,
+        .14,
+        .07
+    );
+
+
+    await wait(
+        450
+    );
+
+
+
+    /* =====================================================
+       CHIUDE SCANSIONE
+    ===================================================== */
+
+    login.classList.add(
+        "fadeOut"
+    );
+
+
+    await wait(
+        650
+    );
+
+
+    login.classList.add(
+        "hidden"
+    );
+
+
+
+    /* =====================================================
+       ACCESSO CONSENTITO
+    ===================================================== */
+
+    success.style.display =
+        "block";
+
+
+    success.classList.add(
+        "fadeIn"
+    );
+
+
+    await playAndWait(
+
+        accesso,
+
+        3500
+
+    );
+
+
+    await wait(
+        350
+    );
+
+
+    success.classList.add(
+        "fadeOut"
+    );
+
+
+    await wait(
+        650
+    );
+
+
+    success.classList.add(
+        "hidden"
+    );
+
+
+
+    /* =====================================================
+       BENTORNATO
+    ===================================================== */
+
+    welcome.style.display =
+        "block";
+
+
+    welcome.classList.add(
+        "fadeIn"
+    );
+
+
+    beep(
+        850,
+        .15,
+        .05
+    );
+
+
+    await wait(
+        250
+    );
+
+
+    await playWelcome();
+
+
+
+    authScreen.classList.remove(
+        "scanning"
+    );
+
+
+    destinationText.classList.add(
+        "show"
+    );
+
+
+    await wait(
+        550
+    );
+
+
+
+    /* =====================================================
+       SALVA SESSIONE
+    ===================================================== */
+
+    sessionStorage.setItem(
+
+        "ALIS_AUTHENTICATED_" +
+        currentPlayer.key,
+
+        "1"
+
+    );
+
+
+    sessionStorage.setItem(
+
+        "ALIS_ACTIVE_PLAYER",
+
+        currentPlayer.key
+
+    );
+
+
+
+    /* =====================================================
+       TRANSIZIONE HOME
+    ===================================================== */
+
+    transitionSound();
+
+
+    finalFlash.classList.add(
+        "active"
+    );
+
+
+    background.pause();
+
+
+    await wait(
+        180
+    );
+
+
+    authScreen.classList.add(
+        "exit"
+    );
+
+
+    await wait(
+        1100
+    );
+
+
+    showHome(
+        false
+    );
+
+}
+
+
+
+/* =========================================================
+   IMPRONTA
+========================================================= */
+
+fingerprint.addEventListener(
+
+    "click",
+
+    authenticate
+
+);
+
+
+fingerprint.addEventListener(
+
+    "keydown",
+
+    function(event){
+
+        if(
+
+            event.key ===
+            "Enter"
+
+            ||
+
+            event.key ===
+            " "
+
+        ){
+
+            event.preventDefault();
+
+
+            authenticate();
+
+        }
+
+    }
+
+);
+
+
+
+/* =========================================================
+   AVVIO
+========================================================= */
+
+const alreadyAuthenticated =
+
+    sessionStorage.getItem(
+
+        "ALIS_AUTHENTICATED_" +
+        currentPlayer.key
+
+    )
+
+    ===
+
+    "1";
+
+
+if(
+    alreadyAuthenticated
+){
+
+    showHome(
+        true
+    );
+
+}
+
+else{
+
+    document.body.classList.add(
+        "auth-active"
+    );
+
+}
+
+
+
+/* =========================================================
+   AGGIORNAMENTO AUTOMATICO
+========================================================= */
+
+setInterval(
+
+    function(){
+
+        if(
+            !homeApp.hidden
+        ){
+
+            loadHomeData();
+
+        }
+
+    },
+
+    30000
+
+);
+
+</script>
+
+
+</body>
+
+</html>
